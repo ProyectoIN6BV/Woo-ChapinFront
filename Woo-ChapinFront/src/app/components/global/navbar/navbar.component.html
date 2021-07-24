@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link text-light" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-light" routerLink="">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Login</a>
+          <a class="nav-link text-light" routerLink="login">Login</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link text-light dropdown-toggle" routerLink="categorias" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,8 +27,9 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Carrito</a>
+          <a class="nav-link text-light" routerLink="cart">Carrito</a>
         </li>
       </ul>
+      <a style="font-size: 1.2rem; color: white;"><i class="fa fa-shopping-cart"></i> Q0.00</a>
     </div>
 </nav>
