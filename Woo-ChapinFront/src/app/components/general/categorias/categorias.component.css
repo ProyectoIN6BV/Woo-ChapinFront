@@ -1,0 +1,27 @@
+.container{
+    background: white;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.3);
+    min-height: 100vh;
+    position: relative;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    z-index: 2;
+    border-radius: 5px;
+    margin-top: -30px;
+}
+h4{
+    color: #11346b;
+}
+.card{
+    -webkit-box-shadow: 10px 0 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 10px 0 10px 0 rgba(0,0,0,0.3);
+    padding: 1rem;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
