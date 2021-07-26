@@ -16,6 +16,11 @@ import { CategoriasComponent } from './components/general/categorias/categorias.
 import { CarritoComponent } from './components/general/carrito/carrito.component';
 import { InterceptorService } from './services/interceptor/interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { NavbarAdminComponent } from './components/admin/navbar-admin/navbar-admin.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { ProdRegisterComponent } from './components/admin/productos/prod-register/prod-register.component';
+import { ProdSidebarComponent } from './components/admin/productos/prod-sidebar/prod-sidebar.component';
+import { ProdAddComponent } from './components/admin/productos/prod-add/prod-add.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -68,7 +73,12 @@ const customNotifierOptions: NotifierOptions = {
     LoginComponent,
     RegisterComponent,
     CategoriasComponent,
-    CarritoComponent
+    CarritoComponent,
+    NavbarAdminComponent,
+    HomeAdminComponent,
+    ProdRegisterComponent,
+    ProdSidebarComponent,
+    ProdAddComponent
   ],
   imports: [
     BrowserModule,
