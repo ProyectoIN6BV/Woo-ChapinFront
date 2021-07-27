@@ -45,46 +45,53 @@
                   <div class="formbg col-lg-9">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form id="stripe-login">
+                      <form #register="ngForm" (ngSubmit)="onSubmit(register)" id="stripe-login">
                         <div class="row">
                             <div class="field padding-bottom--24 col-lg-6 pr-2">
-                                <label for="email">Nombre:</label>
-                                <input type="email" name="email">
+                                <label for="name">Nombre:</label>
+                                <input required type="text" #name="ngModel" [(ngModel)]="user.name" name="name" id="name">
+                                <span class="alertForm" *ngIf="!name.valid && name.touched">Campo Obligatorio</span>
                             </div>
                             <div class="field padding-bottom--24 col-lg-6">
-                                <label for="email">Apellido:</label>
-                                <input type="email" name="email">
+                                <label for="lastName">Apellido:</label>
+                                <input required type="text" #lastName="ngModel" [(ngModel)]="user.lastName" name="lastName" id="lastName">
+                                <span class="alertForm" *ngIf="!lastName.valid && lastName.touched">Campo Obligatorio</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="field padding-bottom--24 col-lg-6 pr-2">
-                                <label for="email">Teléfono:</label>
-                                <input type="email" name="email">
+                                <label for="phone">Teléfono:</label>
+                                <input required type="number" #phone="ngModel" [(ngModel)]="user.phone" name="phone" id="phone">
+                                <span class="alertForm" *ngIf="!phone.valid && phone.touched">Campo Obligatorio</span>
                             </div>
                             <div class="field padding-bottom--24 col-lg-6">
                                 <label for="email">email:</label>
-                                <input type="email" name="email">
+                                <input required type="email" #email="ngModel" [(ngModel)]="user.email" name="email" id="email">
+                                <span class="alertForm" *ngIf="!email.valid && email.touched">Campo Obligatorio</span>
                             </div>
                         </div>
                         
                         <div class="field padding-bottom--24">
-                            <label for="email">Username:</label>
-                            <input type="email" name="email">
-                        </div>
+                            <label for="userName">Username:</label>
+                            <input required type="text" #userName="ngModel" [(ngModel)]="user.userName" name="userName" id="userName">
+                            <span class="alertForm" *ngIf="!userName.valid && userName.touched">Campo Obligatorio</span>
+                          </div>
                         <div class="field padding-bottom--24">
                           <div class="grid--50-50">
                             <label for="password">Password</label>
                           </div>
-                          <input type="password" name="password">
+                          <input required type="password" #password="ngModel" [(ngModel)]="user.password" name="password" id="password">
+                          <span class="alertForm" *ngIf="!password.valid && password.touched">Campo Obligatorio</span>
                         </div>
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
-                              <label for="password">Confirma tu Password</label>
+                              <label for="password2">Confirma tu Password</label>
                             </div>
-                            <input type="password" name="password">
+                            <input required type="password" name="passwordConfirm" #passwordConfirm="ngModel" [(ngModel)]="password2" id="passwordConfirm">
+                            <span class="alertForm" *ngIf="!passwordConfirm.valid &&  passwordConfirm.touched || user.password != password2">Campo Obligatorio</span>
                         </div>    
                         <div class="text-center">
-                            <input type="submit" name="submit" value="Continuar">              
+                            <input type="submit"  value="Continuar">              
                         </div>
                     </form>
                     </div>

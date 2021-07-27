@@ -1,0 +1,22 @@
+<div style="position: relative;" >
+    <div class="l-navbar" id="nav-bar" style="position: absolute;">
+        <nav class="nav">
+            <div> 
+                <div class="nav_list"> 
+                    <a  class="nav_link p-4" (click)="changeVariable()"> 
+                        <i class='fa fa-bars nav_icon'></i>  <span *ngIf="showName" [@enterAnimation]>Productos</span> 
+                    </a>
+                    <hr class="m-0">
+                    <a  class="nav_link p-4" routerLink="../productAdmin"> 
+                        <i class='fa fa-product-hunt nav_icon'></i> <span *ngIf="showName" [@enterAnimation]>Productos Registrados</span> 
+                    </a> 
+                    <hr class="m-0">
+                    <a  class="nav_link p-4"> 
+                        <i class='fa fa-plus-circle nav_icon'></i> <span *ngIf="showName" [@enterAnimation]>Agregar Producto</span> 
+                    </a> 
+                </div>
+            </div> 
+        </nav>
+    </div>
+
+</div>

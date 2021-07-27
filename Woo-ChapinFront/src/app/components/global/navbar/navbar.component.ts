@@ -10,8 +10,6 @@ export class NavbarComponent implements OnInit {
   show = true;
   showFixed = false;
   constructor(public loader: LoaderService,) { 
-    this.loader.isLoading.next(true);
-
   }
   
   changeClass(){

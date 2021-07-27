@@ -253,6 +253,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
   background-color: rgb(4, 35, 51);
+  cursor: pointer;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -261,4 +262,9 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   -o-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
+}
+
+.alertForm{
+  font-size: 15px;
+  color: #F93154;
 }
