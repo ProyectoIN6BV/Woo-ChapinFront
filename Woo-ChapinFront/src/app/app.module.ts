@@ -21,6 +21,12 @@ import { HomeAdminComponent } from './components/admin/home-admin/home-admin.com
 import { ProdRegisterComponent } from './components/admin/productos/prod-register/prod-register.component';
 import { ProdSidebarComponent } from './components/admin/productos/prod-sidebar/prod-sidebar.component';
 import { ProdAddComponent } from './components/admin/productos/prod-add/prod-add.component';
+import { CatAddComponent } from './components/admin/categorias/cat-add/cat-add.component';
+import { CatRegisterComponent } from './components/admin/categorias/cat-register/cat-register.component';
+import { CatSidebarComponent } from './components/admin/categorias/cat-sidebar/cat-sidebar.component';
+import { ZoneRegisterComponent } from './components/admin/zones/zone-register/zone-register.component';
+import { ZoneAddComponent } from './components/admin/zones/zone-add/zone-add.component';
+import { ZoneSidebarComponent } from './components/admin/zones/zone-sidebar/zone-sidebar.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -78,7 +84,13 @@ const customNotifierOptions: NotifierOptions = {
     HomeAdminComponent,
     ProdRegisterComponent,
     ProdSidebarComponent,
-    ProdAddComponent
+    ProdAddComponent,
+    CatAddComponent,
+    CatRegisterComponent,
+    CatSidebarComponent,
+    ZoneRegisterComponent,
+    ZoneAddComponent,
+    ZoneSidebarComponent
   ],
   imports: [
     BrowserModule,

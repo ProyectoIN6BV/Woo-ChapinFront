@@ -1,0 +1,74 @@
+<section>
+    <app-cat-sidebar></app-cat-sidebar>
+    <div class="container pb-3  w-100 pt-3">
+        <div class="w-100 text-center">
+            <h2>Categorías</h2>
+        </div>
+        <div class="w-100 row m-0 justify-content-center">
+            <div class="col-lg-6 row justify-content-center">
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
+                    <div class="card-body text-center">
+                      <h2 style="color: #11346b;" class="card-title">Categoria 1</h2>
+                    </div>
+                    <div class="w-100 mt-1">
+                        <button type="button" data-toggle="modal" data-target="#editCat" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" data-toggle="modal" data-target="#deleteCat" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 row justify-content-center">
+                <div class="card" style="width: 20rem;">
+                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
+                    <div class="card-body text-center">
+                      <h2 style="color: #11346b;" class="card-title">Categoría 2</h2>
+                    </div>
+                    <div class="w-100 mt-1">
+                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="editCat" tabindex="-1" role="dialog" aria-labelledby="editCatTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editCatTitle">Editar Categoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteCat" tabindex="-1" role="dialog" aria-labelledby="deleteCatTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteCatTitle">eliminar Categoría</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>

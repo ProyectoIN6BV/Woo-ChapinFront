@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CatAddComponent } from './components/admin/categorias/cat-add/cat-add.component';
+import { CatRegisterComponent } from './components/admin/categorias/cat-register/cat-register.component';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { ProdAddComponent } from './components/admin/productos/prod-add/prod-add.component';
 import { ProdRegisterComponent } from './components/admin/productos/prod-register/prod-register.component';
+import { ZoneAddComponent } from './components/admin/zones/zone-add/zone-add.component';
+import { ZoneRegisterComponent } from './components/admin/zones/zone-register/zone-register.component';
 import { CarritoComponent } from './components/general/carrito/carrito.component';
 import { CategoriasComponent } from './components/general/categorias/categorias.component';
 import { HomeComponent } from './components/general/home/home.component';
@@ -15,7 +20,12 @@ const routes: Routes = [
   {path:'categorias', component:CategoriasComponent},
   {path:'cart', component:CarritoComponent},
   {path:'homeAdmin', component:HomeAdminComponent},
-  {path: 'productAdmin', component:ProdRegisterComponent}
+  {path: 'productAdmin/register', component:ProdRegisterComponent},
+  {path: 'productAdmin/add', component:ProdAddComponent},
+  {path: 'categoria/register', component:CatRegisterComponent},
+  {path:'categoria/add', component: CatAddComponent},
+  {path: 'zones/register', component:ZoneRegisterComponent},
+  {path: 'zones/add', component:ZoneAddComponent}
 ];
 
 @NgModule({

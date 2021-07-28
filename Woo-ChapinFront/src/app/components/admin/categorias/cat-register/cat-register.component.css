@@ -7,13 +7,13 @@
     position: relative;
     z-index: 2;
 }
-
-.shadow{
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+h2{
+    color: #11346b;
 }
 
-.tag{
-    color: #1e5db6 !important;
-    font-weight: bolder;
+.card{
+    -webkit-box-shadow: 10px 0 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 10px 0 10px 0 rgba(0,0,0,0.3);
+    padding: 1rem;
 }
 
