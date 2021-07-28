@@ -45,10 +45,11 @@
                   <div class="formbg">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form id="stripe-login">
+                      <form id="stripe-login" #login= "ngForm" (ngSubmit)="onclick(login)">
                         <div class="field padding-bottom--24">
                           <label for="email">Username:</label>
-                          <input type="email" name="email">
+                          <input required type="text" #userName="ngModel" [(ngModel)]="user.userName" name="userName" id="userName">
+                          <span class="alertForm" *ngIf="!userName.valid && userName.touched">*Campo Obligatorio</span>
                         </div>
                         <div class="field padding-bottom--24">
                           <div class="grid--50-50">
@@ -57,7 +58,8 @@
                               <a href="#">¿Olvidaste tu contraseña?</a>
                             </div>
                           </div>
-                          <input type="password" name="password">
+                          <input required type="password" #password="ngModel" [(ngModel)]="user.password" name="password" id="password">
+                          <span class="alertForm" *ngIf="!password.valid && password.touched">*Campo Obligatorio</span>
                         </div>
                         <div class="text-center">
                             <input type="submit" name="submit" value="Continuar">              

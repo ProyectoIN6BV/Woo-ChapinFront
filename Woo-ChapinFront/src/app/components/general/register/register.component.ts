@@ -8,6 +8,7 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   private readonly notifier;
   public user:User;
