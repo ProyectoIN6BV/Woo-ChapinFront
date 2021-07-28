@@ -1,4 +1,4 @@
-export class User{
+export class Categoria{
     constructor(
         public nameCategoria: String,
         public descCategoria:String,

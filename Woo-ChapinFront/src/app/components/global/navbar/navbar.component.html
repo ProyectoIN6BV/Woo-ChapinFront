@@ -10,13 +10,13 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="role != 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!token">
           <a class="nav-link text-light" routerLink="login">Login</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="role != 'ROLE_ADMIN'">
           <a class="nav-link text-light dropdown-toggle" routerLink="categorias" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
@@ -27,26 +27,36 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role != 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="cart">Carrito</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="homeAdmin">Home Admin</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="productAdmin/register">Productos Admin</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="categoria/register">Categorías Admin</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="zones/register">Zonas de envío</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="pedidos/register">Pedidos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="personalizar">Personalizar</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="token">
+          <a class="nav-link text-light dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mi Cuenta
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Mi Cuenta</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
+          </div>
         </li>
       </ul>
       <a style="font-size: 1.2rem; color: white;"><i class="fa fa-shopping-cart"></i> Q0.00</a>
