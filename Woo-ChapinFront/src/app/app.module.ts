@@ -27,6 +27,10 @@ import { CatSidebarComponent } from './components/admin/categorias/cat-sidebar/c
 import { ZoneRegisterComponent } from './components/admin/zones/zone-register/zone-register.component';
 import { ZoneAddComponent } from './components/admin/zones/zone-add/zone-add.component';
 import { ZoneSidebarComponent } from './components/admin/zones/zone-sidebar/zone-sidebar.component';
+import { PedidoRegisterComponent } from './components/admin/pedidos/pedido-register/pedido-register.component';
+import { PedidoAddComponent } from './components/admin/pedidos/pedido-add/pedido-add.component';
+import { PedidoSidebarComponent } from './components/admin/pedidos/pedido-sidebar/pedido-sidebar.component';
+import { PersonalizarComponent } from './components/admin/personalizar/personalizar.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -90,7 +94,11 @@ const customNotifierOptions: NotifierOptions = {
     CatSidebarComponent,
     ZoneRegisterComponent,
     ZoneAddComponent,
-    ZoneSidebarComponent
+    ZoneSidebarComponent,
+    PedidoRegisterComponent,
+    PedidoAddComponent,
+    PedidoSidebarComponent,
+    PersonalizarComponent
   ],
   imports: [
     BrowserModule,

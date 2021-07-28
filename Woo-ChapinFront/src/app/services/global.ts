@@ -1,3 +1,3 @@
 export const CONNECTION = {
-    URI: 'http://localhost:3800/carrito/'
+    URI: 'http://localhost:3800/wooChapin/'
 }
