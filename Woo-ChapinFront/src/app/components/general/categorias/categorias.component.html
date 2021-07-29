@@ -16,20 +16,13 @@
         <div class="w-100 text-center pb-3">
             <h2 style="color: #11346b;">Categorías</h2>
         </div>
-        <div class="w-100 row m-0 justify-content-center">
+        <div *ngFor="let optionCategorias of categorias" class="w-100 row m-0 justify-content-center">
             <div class="col-lg-6 row justify-content-center">
                 <div class="card" style="width: 20rem;">
                     <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
                     <div class="card-body text-center">
-                      <h2 style="color: #11346b;" class="card-title">Categoria 1</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 row justify-content-center">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                      <h2 style="color: #11346b;" class="card-title">Categoría 2</h2>
+                      <h2 style="color: #11346b;" class="card-title">{{optionCategorias.nameCategoria}}</h2>
+                      <span class="tex-muted">{{optionCategorias.descCategoria}}</span>
                     </div>
                 </div>
             </div>
