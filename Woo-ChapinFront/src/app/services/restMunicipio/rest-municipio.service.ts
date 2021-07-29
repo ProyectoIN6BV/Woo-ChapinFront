@@ -55,4 +55,13 @@ import { CONNECTION } from '../global';
         return this.http.post(this.uri+'createMunicipio',params,{headers: headers})
         .pipe(map(this.extractData));
       }
+
+      getMunicipios(){
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': this.getToken()
+        })        
+        return this.http.get(this.uri+"getMunicipios",{headers: headers})
+        .pipe(map(this.extractData))
+      }
   }

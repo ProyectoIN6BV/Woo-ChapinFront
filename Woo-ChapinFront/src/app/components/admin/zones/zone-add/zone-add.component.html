@@ -48,7 +48,7 @@
                         <div class="field padding-bottom--24">
                             <label for="nameMunicipio">Nombre de zona/Municipio:</label>
                             <input required type="text" #nameMunicipio="ngModel" [(ngModel)]="municipio.nameMunicipio"  name="nameMunicipio" id="nameMunicipio">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <span class="alertForm" *ngIf="!nameMunicipio.valid && nameMunicipio.touched">Campo Obligatorio</span>
                         </div>
                        
                         <div class="field padding-bottom--24">
@@ -56,7 +56,7 @@
                               <label for="precioEnvio">Precio de Envío:</label>
                             </div>
                             <input required type="text" #precioEnvio="ngModel" [(ngModel)]="municipio.precioEnvio"  name="precioEnvio" id="precioEnvio">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <span class="alertForm" *ngIf="!precioEnvio.valid && precioEnvio.touched">Campo Obligatorio</span>
                         </div>                           
                         <div class="text-center">
                             <input type="submit"  value="Agregar">              

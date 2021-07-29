@@ -15,15 +15,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">San Miguel Petapa</th>
-                    <td>25</td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Villa Nueva</th>
-                    <td>25</td>
+                  <tr *ngFor="let optionMunicipios of municipios">
+                    <th scope="row">{{optionMunicipios.nameMunicipio}}</th>
+                    <td>{{optionMunicipios.precioEnvio}}</td>
                     <td><button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
                     <td><button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
                   </tr>
