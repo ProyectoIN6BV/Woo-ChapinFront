@@ -43,56 +43,67 @@
                   <div class="formbg col-lg-9">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form #register="ngForm"  id="stripe-login">
+                      <form #register="ngForm"  (ngSubmit)="saveProduct(register)" id="stripe-login">
                         
                         
                         
                         <div class="field padding-bottom--24">
-                            <label for="userName">Nombre:</label>
-                            <input required type="text"  name="userName" id="userName">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <label for="nameProducto">Nombre:</label>
+                            <input required type="text" #nameProducto="ngModel" [(ngModel)]="producto.nameProducto" name="nameProducto" id="nameProducto">
+                            <span class="alertForm" *ngIf="!nameProducto.valid && nameProducto.touched">Campo Obligatorio</span>
                           </div>
                         <div class="field padding-bottom--24">
                           <div class="grid--50-50">
-                            <label for="password">Descripción del producto</label>
+                            <label for="descProducto">Descripción del producto</label>
                           </div>
-                          <textarea required class="from-control"  name="password" id="password"></textarea>
-                          <span class="alertForm" >Campo Obligatorio</span>
+                          <textarea required class="from-control" #descProducto="ngModel" [(ngModel)]="producto.descProducto"  name="descProducto" id="descProducto"></textarea>
+                          <span class="alertForm" *ngIf="!descProducto.valid && descProducto.touched" >Campo Obligatorio</span>
                         </div>
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
-                              <label for="password2">Etiquetas:</label>
+                              <label for="tags">Etiquetas:</label>
                             </div>
-                            <input required type="password" name="passwordConfirm" id="passwordConfirm">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <div class="row">
+                              <div class="col-lg-2 mb-2 ml-2" *ngFor="let tag  of producto.tags">
+                                <div class="border border-primary rounded text-center">
+                                    <span class="tag" style="font-size: 14px;">{{tag}}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <input   #tagType="ngModel" [(ngModel)]="value" type="text" (keyup.enter)="onKey(tagType.value)" name="tags" id="tags">
                         </div> 
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
-                              <label for="password2">Stock:</label>
+                              <label for="stock">Stock:</label>
                             </div>
-                            <input required type="password" name="passwordConfirm" id="passwordConfirm">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <input required type="number" name="stock" id="stock" #stock="ngModel" [(ngModel)]="producto.stock">
+                            <span class="alertForm" *ngIf="!stock.valid && stock.touched" >Campo Obligatorio</span>
                         </div>    
+                        <div class="field padding-bottom--24">
+                          <div class="grid--50-50">
+                            <label for="precio">Precio:</label>
+                          </div>
+                          <input required type="number" name="precio" id="precio" #precio="ngModel" [(ngModel)]="producto.precio">
+                          <span class="alertForm" *ngIf="!precio.valid && precio.touched" >Campo Obligatorio</span>
+                      </div>  
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
                               <label for="password2">Categoría:</label>
                             </div>
-                            <select class="form-control">
-                                <option>categoría 1</option>
-                                <option>categoría 2</option>
-                                <option>categoría 3</option>
+                            <select class="form-control" required  name="categoria" id="categoria" #categoria="ngModel" [(ngModel)]="producto.categoria">
+                                <option>Seleccione una categoría...</option>
+                                <option *ngFor="let category of categories" value="{{category._id}}">{{category.nameCategoria}}</option>
                             </select>
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <span class="alertForm" *ngIf="!categoria.valid && categoria.touched">Campo Obligatorio</span>
                         </div>  
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
                               <label for="password2">Imagen del producto:</label>
                             </div>
-                            <input required type="file" name="passwordConfirm" id="passwordConfirm">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <input required type="file" (change)="fileChange($event)">
                         </div>    
                         <div class="text-center">
-                            <input type="submit"  value="Agregar">              
+                            <input type="submit" [disabled]="!register.form.valid"  value="Agregar">              
                         </div>
                     </form>
                     </div>
