@@ -9,6 +9,7 @@ import { RestCategoriaService } from 'src/app/services/restCategoria/rest-catego
   styleUrls: ['./cat-add.component.css']
 })
 export class CatAddComponent implements OnInit {
+  
   categoria: Categoria;
   public fileCategory:Array<File>;
   private readonly notifier;
