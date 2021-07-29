@@ -43,22 +43,21 @@
                   <div class="formbg col-lg-9">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form #register="ngForm"  id="stripe-login">
+                      <form #register="ngForm" (ngSubmit)="addMunicipio(register)"  id="stripe-login">
                         
                         <div class="field padding-bottom--24">
-                            <label for="userName">Nombre de zona/Municipio:</label>
-                            <input required type="text"  name="userName" id="userName">
-                            <span class="alertForm">Campo Obligatorio</span>
+                            <label for="nameMunicipio">Nombre de zona/Municipio:</label>
+                            <input required type="text" #nameMunicipio="ngModel" [(ngModel)]="municipio.nameMunicipio"  name="nameMunicipio" id="nameMunicipio">
+                            <span class="alertForm" *ngIf="!nameMunicipio.valid && nameMunicipio.touched">Campo Obligatorio</span>
                         </div>
                        
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
-                              <label for="password2">Precio de Envío:</label>
+                              <label for="precioEnvio">Precio de Envío:</label>
                             </div>
-                            <input required type="password" name="passwordConfirm" id="passwordConfirm">
-                            <span class="alertForm">Campo Obligatorio</span>
-                        </div>    
-                       
+                            <input required type="text" #precioEnvio="ngModel" [(ngModel)]="municipio.precioEnvio"  name="precioEnvio" id="precioEnvio">
+                            <span class="alertForm" *ngIf="!precioEnvio.valid && precioEnvio.touched">Campo Obligatorio</span>
+                        </div>                           
                         <div class="text-center">
                             <input type="submit"  value="Agregar">              
                         </div>

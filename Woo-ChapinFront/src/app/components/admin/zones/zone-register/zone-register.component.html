@@ -15,16 +15,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">San Miguel Petapa</th>
-                    <td>25</td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Villa Nueva</th>
-                    <td>25</td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
+                  <tr *ngFor="let optionMunicipios of municipios">
+                    <th scope="row">{{optionMunicipios.nameMunicipio}}</th>
+                    <td>{{optionMunicipios.precioEnvio}}</td>
+                    <td><button type="button" data-toggle="modal" data-target="#modalEdit" (click)="selectMunicipio(optionMunicipios)" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
                     <td><button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
                   </tr>
                 </tbody>
@@ -43,11 +37,22 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <form  id="stripe-login">
+            <div class="field padding-bottom--24">
+                <label for="nameMunicipio">Zona/Municipio:</label>
+                <input required type="text" #nameMunicipio="ngModel" [(ngModel)]="municipio.nameMunicipio"  name="nameMunicipio" id="nameMunicipio">
+            </div>
+            <div class="field padding-bottom--24">
+              <div class="grid--50-50">
+                <label for="precioEnvio">Precio</label>
+              </div>
+              <textarea class="from-control" autocomplete="on" required type="text" #precioEnvio="ngModel" [(ngModel)]="municipio.precioEnvio"  name="precioEnvio" id="precioEnvio">></textarea>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" (click)="updateMunicipio()"  data-dismiss="modal" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

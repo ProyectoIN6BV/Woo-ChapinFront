@@ -115,6 +115,7 @@ export class RestCategoriaService{
     return this.http.put(this.uri+'deleteCategory/'+id, {}, {headers: headers})
     .pipe(map(this.extractData));
   }
+  
   getCategoria(){
     return this.http.get(this.uri+'/getCategory',this.httpOptions)
     .pipe(map(this.extractData));
