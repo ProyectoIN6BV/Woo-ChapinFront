@@ -90,8 +90,34 @@ export class RestCategoriaService{
     })
   }
 
+  getCategoryAdmin(){
+    return this.http.get(this.uri+"getCategory",this.httpOptions)
+    .pipe(map(this.extractData))
+  }
+
+
+  updateCategory(category, id){
+    let params  = JSON.stringify(category);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.put(this.uri+'updateCategory/'+id, params, {headers: headers})
+    .pipe(map(this.extractData));
+  }
+
+
+  removeCategory(id){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.put(this.uri+'deleteCategory/'+id, {}, {headers: headers})
+    .pipe(map(this.extractData));
+  }
   getCategoria(){
     return this.http.get(this.uri+'/getCategory',this.httpOptions)
     .pipe(map(this.extractData));
   }
+    
 }

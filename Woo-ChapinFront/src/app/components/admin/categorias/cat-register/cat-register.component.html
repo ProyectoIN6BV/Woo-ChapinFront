@@ -5,30 +5,20 @@
             <h2>Categorías</h2>
         </div>
         <div class="w-100 row m-0 justify-content-center">
-            <div class="col-lg-6 row justify-content-center">
+            <div *ngFor="let category of categories" class="col-lg-6 pb-2 row justify-content-center">
                 <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
+                    <img *ngIf="category.imgCategoria != undefined" class="card-img-top" src="{{uri+'getImgCat/'+category.imgCategoria}}" alt="Card image cap">
                     <div class="card-body text-center">
-                      <h2 style="color: #11346b;" class="card-title">Categoria 1</h2>
+                      <h2 style="color: #11346b;" class="card-title">{{category.nameCategoria}}</h2>
+                      <span class="text-muted">{{category.descCategoria}}</span>
                     </div>
                     <div class="w-100 mt-1">
-                        <button type="button" data-toggle="modal" data-target="#editCat" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#deleteCat" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button type="button" data-toggle="modal" data-target="#editCat" (click)="selectCategory(category)" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" data-toggle="modal" data-target="#deleteCat" (click)="selectCategory(category)" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 row justify-content-center">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                      <h2 style="color: #11346b;" class="card-title">Categoría 2</h2>
-                    </div>
-                    <div class="w-100 mt-1">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 </section>
@@ -38,16 +28,29 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="editCatTitle">Editar Categoría</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" (click)="reset()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <form  id="stripe-login">
+            <div class="field padding-bottom--24">
+                <label for="nameCategoria">Nombre:</label>
+                <input required type="text" #nameCategoria="ngModel" [(ngModel)]="categoria.nameCategoria"  name="nameCategoria" id="nameCategoria">
+                <span class="alertForm" *ngIf="!nameCategoria.valid && nameCategoria.touched">Campo Obligatorio</span>
+            </div>
+            <div class="field padding-bottom--24">
+              <div class="grid--50-50">
+                <label for="descCategoria">Descripción de la categoría</label>
+              </div>
+              <textarea required class="from-control" autocomplete="on" required  #descCategoria="ngModel" [(ngModel)]="categoria.descCategoria" name="descCategoria" id="descCategoria"></textarea>
+              <span class="alertForm" *ngIf="!descCategoria.valid && descCategoria.touched">Campo Obligatorio</span>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" (click)="reset()" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="updateCategory()" data-dismiss="modal" class="btn btn-primary">Editar Categoría</button>
         </div>
       </div>
     </div>
@@ -63,11 +66,11 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <span class="text-danger">¿Estás seguro de eliminar esta categoría?</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="removeCategory()" data-dismiss="modal" class="btn btn-danger">Eliminar</button>
         </div>
       </div>
     </div>
