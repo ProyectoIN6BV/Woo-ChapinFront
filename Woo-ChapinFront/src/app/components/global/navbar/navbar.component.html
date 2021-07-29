@@ -1,22 +1,23 @@
 <div *ngIf="loader.isLoading | async" class="loader">
   <mat-progress-bar class="fix" mode="indeterminate"></mat-progress-bar>
 </div>
-<nav class="navbar navbar-expand-lg navbar"  [ngClass]="{'navTop':show, 'navFixed':showFixed}" (window:scroll)="changeClass()">
+<nav class="navbar navbar-expand-lg  navbar-light "  [ngClass]="{'navTop':show, 'navFixed':showFixed}" (window:scroll)="changeClass()">
     <a class="navbar-brand text-white">WooChapín</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link text-light" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item active" *ngIf="role != 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">Login</a>
+        <li class="nav-item" *ngIf="!token">
+          <a class="nav-link text-light" routerLink="login">Login</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown" *ngIf="role != 'ROLE_ADMIN'">
+          <a class="nav-link text-light dropdown-toggle" routerLink="categorias" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categorías
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -26,9 +27,38 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" href="#">Carrito</a>
+        <li class="nav-item" *ngIf="role != 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="cart">Carrito</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="homeAdmin">Home Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="productAdmin/register">Productos Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="categoria/register">Categorías Admin</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="zones/register">Zonas de envío</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="pedidos/register">Pedidos</a>
+        </li>
+        <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">
+          <a class="nav-link text-light" routerLink="personalizar">Personalizar</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="token">
+          <a class="nav-link text-light dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Mi Cuenta
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Mi Cuenta</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a>
+          </div>
         </li>
       </ul>
+      <a style="font-size: 1.2rem; color: white;"><i class="fa fa-shopping-cart"></i> Q0.00</a>
     </div>
 </nav>
