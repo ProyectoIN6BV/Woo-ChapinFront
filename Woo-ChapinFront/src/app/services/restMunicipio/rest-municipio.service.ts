@@ -64,4 +64,17 @@ import { CONNECTION } from '../global';
         return this.http.get(this.uri+"getMunicipios",{headers: headers})
         .pipe(map(this.extractData))
       }
+
+      updateMunicipio(municipio, id){
+        let params  = JSON.stringify(municipio);
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': this.getToken()
+        })
+        console.log("Llegue");
+        console.log(id);
+        return this.http.put(this.uri+'updateMunicipio/'+id, params, {headers: headers})
+        .pipe(map(this.extractData));
+
+      }
   }
