@@ -56,7 +56,7 @@
                           <div class="grid--50-50">
                             <label for="descCategoria">Descripción de la categoría</label>
                           </div>
-                          <textarea required class="from-control" required  #descCategoria="ngModel" [(ngModel)]="categoria.descCategoria" name="descCategoria" id="descCategoria"></textarea>
+                          <textarea required class="from-control" autocomplete="on" required  #descCategoria="ngModel" [(ngModel)]="categoria.descCategoria" name="descCategoria" id="descCategoria"></textarea>
                           <span class="alertForm" *ngIf="!descCategoria.valid && descCategoria.touched">Campo Obligatorio</span>
                         </div>
                         
