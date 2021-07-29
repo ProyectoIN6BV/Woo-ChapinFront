@@ -90,4 +90,8 @@ export class RestCategoriaService{
     })
   }
 
+  getCategoria(){
+    return this.http.get(this.uri+'/getCategory',this.httpOptions)
+    .pipe(map(this.extractData));
+  }
 }

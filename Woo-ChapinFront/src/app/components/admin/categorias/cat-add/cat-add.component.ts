@@ -14,7 +14,7 @@ export class CatAddComponent implements OnInit {
   private readonly notifier;
   private token;
   constructor(private restCategoria: RestCategoriaService, private notifierService: NotifierService){
-    this.categoria = new Categoria('','','');
+    this.categoria = new Categoria('','','','');
     this.notifier = notifierService;
     this.token = restCategoria.getToken();
   }
