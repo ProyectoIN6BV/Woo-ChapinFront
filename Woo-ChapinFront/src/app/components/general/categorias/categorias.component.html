@@ -16,16 +16,27 @@
         <div class="w-100 text-center pb-3">
             <h2 style="color: #11346b;">Categorías</h2>
         </div>
-        <div  class="w-100 row m-0 justify-content-center">
-            <div *ngFor="let optionCategorias of categorias" class="col-lg-6 row justify-content-center">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                      <h2 style="color: #11346b;" class="card-title">{{optionCategorias.nameCategoria}}</h2>
-                      <span class="tex-muted">{{optionCategorias.descCategoria}}</span>
+       
+        
+        <div class="w-100 row">
+            <div class="col-md-4" *ngFor="let category of categorias">
+                <div class="wsk-cp-product">
+                  <div class="wsk-cp-img">
+                    <img src="{{uri+'getImgCat/'+category.imgCategoria}}" alt="Category" class="img-responsive" />
+                  </div>
+                  <div class="wsk-cp-text">
+                    <div class="category">
+                      <span>{{category.nameCategoria}}</span>
                     </div>
+                    <div class="description-prod">
+                      <p>{{category.descCategoria}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button routerLink="../categoria/{{category._id}}">Ver categoria</button>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
         </div>
     </div>
 </section>

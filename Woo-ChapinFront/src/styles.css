@@ -1,2 +1,15 @@
  
 @import "~angular-notifier/styles";
+
+  
+body .slick-prev, 
+body .slick-next {
+    height: 45px;
+    width: 40px;
+    background: grey !important;
+    z-index: 100;
+}
+
+.slick-slide{
+  display: flex !important;
+}

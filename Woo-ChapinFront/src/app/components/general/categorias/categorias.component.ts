@@ -16,6 +16,7 @@ export class CategoriasComponent implements OnInit {
 
   constructor(private restCategoriaService: RestCategoriaService, private restNotifier:NotifierService) {
     this.notifier = restNotifier;
+    this.uri = CONNECTION.URI;
    }
 
   ngOnInit(): void {
