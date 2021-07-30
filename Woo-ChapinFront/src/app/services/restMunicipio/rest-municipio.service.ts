@@ -75,6 +75,14 @@ import { CONNECTION } from '../global';
         console.log(id);
         return this.http.put(this.uri+'updateMunicipio/'+id, params, {headers: headers})
         .pipe(map(this.extractData));
+      }
 
+      removeMunicipio(id){
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': this.getToken()
+        })
+        return this.http.put(this.uri+'deleteMunicipio/'+id, {}, {headers: headers})
+        .pipe(map(this.extractData));
       }
   }

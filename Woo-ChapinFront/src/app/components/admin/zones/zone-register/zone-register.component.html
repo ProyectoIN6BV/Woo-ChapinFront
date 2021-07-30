@@ -19,7 +19,7 @@
                     <th scope="row">{{optionMunicipios.nameMunicipio}}</th>
                     <td>{{optionMunicipios.precioEnvio}}</td>
                     <td><button type="button" data-toggle="modal" data-target="#modalEdit" (click)="selectMunicipio(optionMunicipios)" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>                    </td>
-                    <td><button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                    <td><button type="button" data-toggle="modal" data-target="#modalDelete" (click)="selectMunicipio(optionMunicipios)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
                   </tr>
                 </tbody>
             </table>
@@ -69,11 +69,11 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <span class="alertForm">¿Estás seguro de eliminar este municipio?</span>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" (click)="removeMunicipio()" class="btn btn-danger">Eliminar</button>
         </div>
       </div>
     </div>

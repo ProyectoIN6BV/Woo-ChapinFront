@@ -23,17 +23,8 @@
                         <hr>
                     </div>
                 </div>
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-danger mr-1"><i class="fa fa-trash"></i></button>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
+                <div class="text-center">
+                  <input type="submit"  value="Agregar" data-toggle="modal" data-target="#modalAdd">              
                 </div>
             </div>
         </div>
@@ -51,11 +42,16 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <form  id="stripe-login">
+            <div class="field padding-bottom--24">
+                <label for="direccion">Direccion:</label>
+                <input type="text" name="direccion" id="direccion">
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Continuar</button>
         </div>
       </div>
     </div>
@@ -72,12 +68,37 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <span class="alertForm">¿Estás seguro de eliminar esta dirección?</span>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-danger">Eliminar</button>
         </div>
       </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAddTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAddTitle">Agregar Dirección</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form  id="stripe-login">
+          <div class="field padding-bottom--24">
+              <label for="direccion">Dirección:</label>
+              <input type="text" name="direccion" id="direccion">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>

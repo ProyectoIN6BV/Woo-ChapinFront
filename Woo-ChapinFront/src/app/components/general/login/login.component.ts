@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public password2;
 
   constructor( private notifierService:NotifierService, private restUser:RestUserService, private router: Router) { 
-    this.user = new User('','','','','','','',[]);
+    this.user = new User('','','','','','','','',[]);
     this.notifier = notifierService;
   }
 

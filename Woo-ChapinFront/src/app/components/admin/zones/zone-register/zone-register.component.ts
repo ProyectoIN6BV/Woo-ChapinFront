@@ -20,6 +20,7 @@ export class ZoneRegisterComponent implements OnInit {
     this.notifier = restNotifier;
     this.municipio = new Municipio('','',null);
    }
+
   ngOnInit(): void {
     this.getMunicipios();
   }
@@ -58,6 +59,18 @@ export class ZoneRegisterComponent implements OnInit {
     console.log("Select");
     console.log(municipio);
     this.municipio = municipio;
+  }
+
+  removeMunicipio(){
+    this.restMunicipioService.removeMunicipio(this.municipio._id).subscribe((res:any)=>{
+      console.log(res);
+      if(res.muniRemove){
+        this.notifier.notify("success", res.message);
+        this.getMunicipios();
+      }else{
+        this.notifier.notify("error", res.message);
+      }
+    }, error=> this.notifier.notify("error", "ocurrió un error en la consulta"))
   }
 
 }

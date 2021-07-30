@@ -9,6 +9,7 @@ import { CONNECTION } from '../global';
 export class RestUserService {
   public uri: string;
   public token;
+  public userId;
   public user;
   public status;
 
@@ -69,4 +70,13 @@ export class RestUserService {
     .pipe(map(this.extractData));
   }
     
+  editarCuenta(product, userId){
+    let params = JSON.stringify(product);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.put(this.uri+'editAccount/'+userId, params,{headers:headers})
+    .pipe(map(this.extractData))
+  }
 }
