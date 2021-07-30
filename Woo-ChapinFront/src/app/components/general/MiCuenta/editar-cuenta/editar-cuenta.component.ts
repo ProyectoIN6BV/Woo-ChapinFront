@@ -23,4 +23,20 @@ export class EditarCuentaComponent implements OnInit {
   onSubmit(form){
     
   }
+
+    
+  editarCuenta(){    
+    delete this.user.password;
+    delete this.user.role;
+    this.restUser.editarCuenta(this.user, this.user._id).subscribe((res:any)=>{
+      if(res.userUpdated){
+        this.notifier.notify("success", res.message);
+        localStorage.setItem("user", JSON.stringify(res.userUpdated))
+        this.user = res.userUpdated;
+      }else{
+        this.notifier.notify("error", res.message);
+        this.user;
+      }
+    }, error=> this.notifier.notify("error", "ocurrió un error en la consulta") );
+  }
 }

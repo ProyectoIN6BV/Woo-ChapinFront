@@ -69,15 +69,14 @@
                                 <input required type="email" #email="ngModel" [(ngModel)]="user.email" name="email" id="email">
                                 <span class="alertForm" *ngIf="!email.valid && email.touched">Campo Obligatorio</span>
                             </div>
-                        </div>
-                        
+                        </div>                        
                         <div class="field padding-bottom--24">
                             <label for="userName">Username:</label>
                             <input required type="text" #userName="ngModel" [(ngModel)]="user.userName" name="userName" id="userName">
                             <span class="alertForm" *ngIf="!userName.valid && userName.touched">Campo Obligatorio</span>
                         </div>
                         <div class="text-center">
-                            <input type="submit"  value="Continuar">              
+                            <input type="submit"  value="Continuar" (click)="editarCuenta()">              
                         </div>
                     </form>
                     </div>

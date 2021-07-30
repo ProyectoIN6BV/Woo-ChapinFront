@@ -1,5 +1,6 @@
 export class User{
     constructor(
+        public _id: String,
         public name: String,
         public lastName:String,
         public userName: String,
