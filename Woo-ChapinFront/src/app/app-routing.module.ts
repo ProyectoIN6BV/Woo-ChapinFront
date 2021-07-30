@@ -14,6 +14,9 @@ import { CarritoComponent } from './components/general/carrito/carrito.component
 import { CategoriasComponent } from './components/general/categorias/categorias.component';
 import { HomeComponent } from './components/general/home/home.component';
 import { LoginComponent } from './components/general/login/login.component';
+import { EditarCuentaComponent } from './components/general/MiCuenta/editar-cuenta/editar-cuenta.component';
+import { MisDireccionesComponent } from './components/general/MiCuenta/mis-direcciones/mis-direcciones.component';
+import { MisPedidosComponent } from './components/general/MiCuenta/mis-pedidos/mis-pedidos.component';
 import { RegisterComponent } from './components/general/register/register.component';
 
 const routes: Routes = [
@@ -31,7 +34,10 @@ const routes: Routes = [
   {path: 'zones/add', component:ZoneAddComponent},
   {path: 'pedidos/register', component: PedidoRegisterComponent},
   {path: 'pedidos/add', component: PedidoAddComponent},
-  {path: 'personalizar', component: PersonalizarComponent}
+  {path: 'personalizar', component: PersonalizarComponent},
+  {path: 'miCuenta/editar', component: EditarCuentaComponent},
+  {path: 'miCuenta/direcciones', component: MisDireccionesComponent},
+  {path: 'miCuenta/pedidos', component: MisPedidosComponent},
 ];
 
 @NgModule({

@@ -2,71 +2,34 @@
     <app-prod-sidebar></app-prod-sidebar>
     <div class="container pb-3  w-100 pt-3">
         <div class="w-100 row m-0" >
-            <div class="col-lg-6 mb-5">
+            <div *ngFor="let product of products" class="col-lg-6 mb-5">
                 <div class="w-100 h-100 row shadow m-0 pt-3 pb-3">
-                    <div class="col-lg-6">
-                        <img  class="img-fluid" src="../../../../../assets/LAPTOP.jpg">
+                    <div class="col-lg-6 d-flex" style="align-items: center;">
+                        <img  class="img-fluid" src="{{uri+'getImgProd/'+product.imgProducto}}">
                     </div>
                     <div class="col-lg-6">
                         <div class="w-100 text-center">
-                            <h3>Laptop HP</h3>
+                            <h3>{{product.nameProducto}}</h3>
                         </div>
-                        <h4>Descripción</h4>
-                        <span>- 8gb de ram</span><br>
-                        <span>- 128 disco SSD</span><br>
-                        <span>- Intel Pentium</span>
+                        <div class="w-100" style="min-height: 150px;">
+                            <h4>Descripción</h4>
+                            <span>{{product.descProducto}}</span>
+                        </div>
+                        <div class="w-100">
+                            <span>Precio: {{product.precio}}</span>
+                        </div>
                         <div class="w-100 mt-1">
-                            <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                            <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                            <button type="button" (click)="selectProduct(product)" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                            <button type="button" (click)="selectProduct(product)" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>    
                     <div class="col-lg-12">
-                        <span>Stock: 150</span>
+                        <span>Stock: {{product.stock}}</span>
                     </div>
                     <div class="col-lg-12 mt-1 row">
-                        <div class="col-lg-3 mb-2">
+                        <div *ngFor="let tag of product.tags" class="col-lg-3 mb-2">
                             <div class="border border-primary rounded text-center">
-                                <span class="tag">Pc</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="border border-primary rounded text-center">
-                                <span class="tag">Laptop</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 mb-5">
-                <div class="w-100 h-100 row shadow m-0 pt-3 pb-3">
-                    <div class="col-lg-6">
-                        <img class="img-fluid" src="../../../../../assets/LAPTOP.jpg">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="w-100 text-center">
-                            <h3>Laptop HP</h3>
-                        </div>
-                        <h4>Descripción</h4>
-                        <span>- 8gb de ram</span><br>
-                        <span>- 128 disco SSD</span><br>
-                        <span>- Intel Pentium</span>
-                        <div class="w-100 mt-1">
-                            <button type="button" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                        </div>
-                    </div>    
-                    <div class="col-lg-12">
-                        <span>Stock: 150</span>
-                    </div>
-                    <div class="col-lg-12 mt-1 row">
-                        <div class="col-lg-3">
-                            <div class="border border-primary rounded text-center">
-                                <span class="tag">Pc</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="border border-primary rounded text-center">
-                                <span class="tag">Laptop</span>
+                                <span class="tag">{{tag}}</span>
                             </div>
                         </div>
                     </div>
@@ -81,16 +44,70 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalEditTitle">Editar Producto</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" (click)="getProducts()" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+            <form #register="ngForm"   id="stripe-login">
+                        
+                <div class="field padding-bottom--24">
+                    <label for="nameProducto">Nombre:</label>
+                    <input required type="text" #nameProducto="ngModel" [(ngModel)]="producto.nameProducto" name="nameProducto" id="nameProducto">
+                    <span class="alertForm" *ngIf="!nameProducto.valid && nameProducto.touched">Campo Obligatorio</span>
+                  </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="descProducto">Descripción del producto</label>
+                  </div>
+                  <textarea required class="from-control" #descProducto="ngModel" [(ngModel)]="producto.descProducto"  name="descProducto" id="descProducto"></textarea>
+                  <span class="alertForm" *ngIf="!descProducto.valid && descProducto.touched" >Campo Obligatorio</span>
+                </div>
+                <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                      <label for="tags">Etiquetas:</label>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-2 mb-2 ml-2" *ngFor="let tag  of producto.tags; let i=index">
+                        <div class="border border-primary row text-center justify-content-center rounded text-center" style="align-items: center;">
+                            <span class="tag" style="font-size: 14px;">{{tag}}</span>
+                            <button type="button" class="close" (click)="deleteTag(i)">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                    <input   #tagType="ngModel" [(ngModel)]="value" type="text" (keyup.enter)="onKey(tagType.value)" name="tags" id="tags">
+                </div> 
+                <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                      <label for="stock">Stock:</label>
+                    </div>
+                    <input required type="number" name="stock" id="stock" #stock="ngModel" [(ngModel)]="producto.stock">
+                    <span class="alertForm" *ngIf="!stock.valid && stock.touched" >Campo Obligatorio</span>
+                </div>    
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="precio">Precio:</label>
+                  </div>
+                  <input required type="number" name="precio" id="precio" #precio="ngModel" [(ngModel)]="producto.precio">
+                  <span class="alertForm" *ngIf="!precio.valid && precio.touched" >Campo Obligatorio</span>
+              </div>  
+                <div class="field padding-bottom--24">
+                    <div class="grid--50-50">
+                      <label for="password2">Categoría:</label>
+                    </div>
+                    <select class="form-control" required  name="categoria" id="categoria" #categoria="ngModel" [(ngModel)]="producto.categoria">
+                        <option>Seleccione una categoría...</option>
+                        <option *ngFor="let category of categories" value="{{category._id}}">{{category.nameCategoria}}</option>
+                    </select>
+                    <span class="alertForm" *ngIf="!categoria.valid && categoria.touched">Campo Obligatorio</span>
+                </div>   
+            </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" (click)="getProducts()" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateProduct()">Editar Producto</button>
         </div>
       </div>
     </div>
@@ -107,11 +124,11 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+            <span class="text-danger">¿Está seguro que desea eliminar el producto?</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="removeProduct()" data-dismiss="modal" class="btn btn-danger">Eliminar Producto</button>
         </div>
       </div>
     </div>
