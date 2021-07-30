@@ -37,6 +37,8 @@ import { EditarCuentaComponent } from './components/general/MiCuenta/editar-cuen
 import { SidebarComponent } from './components/general/MiCuenta/sidebar/sidebar.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SearchCategoryComponent } from './components/general/search-category/search-category.component';
+import { SearchSidebarComponent } from './components/general/search-sidebar/search-sidebar.component';
+import { ProductComponent } from './components/general/product/product.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -109,7 +111,9 @@ const customNotifierOptions: NotifierOptions = {
     MisDireccionesComponent,
     EditarCuentaComponent,
     SidebarComponent,
-    SearchCategoryComponent
+    SearchCategoryComponent,
+    SearchSidebarComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
