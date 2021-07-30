@@ -35,6 +35,8 @@ import { MisPedidosComponent } from './components/general/MiCuenta/mis-pedidos/m
 import { MisDireccionesComponent } from './components/general/MiCuenta/mis-direcciones/mis-direcciones.component';
 import { EditarCuentaComponent } from './components/general/MiCuenta/editar-cuenta/editar-cuenta.component';
 import { SidebarComponent } from './components/general/MiCuenta/sidebar/sidebar.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SearchCategoryComponent } from './components/general/search-category/search-category.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -106,7 +108,8 @@ const customNotifierOptions: NotifierOptions = {
     MisPedidosComponent,
     MisDireccionesComponent,
     EditarCuentaComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +118,8 @@ const customNotifierOptions: NotifierOptions = {
     BrowserAnimationsModule,
     HttpClientModule,
     MatProgressBarModule,
-    NotifierModule.withConfig(customNotifierOptions)
+    NotifierModule.withConfig(customNotifierOptions),
+    SlickCarouselModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

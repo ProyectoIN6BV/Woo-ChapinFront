@@ -114,5 +114,12 @@ export class RestProductoService {
     return this.http.put(this.uri+'deleteProduct/'+productId, {},{headers:headers})
     .pipe(map(this.extractData))
   }
-
+  bestSellers(){
+    return this.http.get(this.uri+"bestSellers", this.httpOptions)
+    .pipe(map(this.extractData));
+  }
+  newProduct(){
+    return this.http.get(this.uri+"newProduct", this.httpOptions)
+    .pipe(map(this.extractData));
+  }
 }

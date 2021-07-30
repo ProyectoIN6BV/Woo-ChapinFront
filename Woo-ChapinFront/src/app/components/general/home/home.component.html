@@ -16,210 +16,66 @@
         <div class="w-100 text-center">
             <h2 style="color: #11346b;">Productos Más Vendidos</h2>
         </div>
-            <div id="carouselExampleIndicators1" class="carousel m-0 slide w-100 row justify-content-center" data-ride="carousel">
-                <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row pt-2 pb-2">
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <ngx-slick-carousel class="carousel mt-2 mb-2" #slickModal="slick-carousel" [config]="slideConfig" >
+            <div ngxSlickItem  *ngFor="let product of bestProducts" class="slide row justify-content-center">
+                <div class="col-md-10">
+                    <div class="wsk-cp-product">
+                      <div class="wsk-cp-img">
+                        <img src="{{this.uri+'getImgProd/'+product.imgProducto}}" alt="Product" class="img-responsive" />
+                      </div>
+                      <div class="wsk-cp-text">
+                        <div class="category">
+                          <span>{{product.categoria[0].nameCategoria}}</span>
+                        </div>
+                        <div class="title-product">
+                          <h3>{{product.nameProducto}}</h3>
+                        </div>
+                        <div class="description-prod">
+                          <p style="white-space: pre-line">{{product.descProducto}}</p>
+                        </div>
+                        <div class="card-footer">
+                          <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
+                            <div class="wcf-right d-flex">
+                                <a  class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
+                              <a  class="buy-btn"><i class="fa fa-cart-plus"></i></a>
                             </div>
                         </div>
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="row pt-2 pb-2">
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>    
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                <div class="row pt-2 pb-2">
-                    <div class="card ml-4 p-2" style="width: 18rem;">
-                        <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card ml-4 p-2" style="width: 18rem;">
-                        <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <div class="card ml-4 p-2" style="width: 18rem;">
-                        <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-                </a>
             </div>
-            <div class="w-100 text-center">
-                <h2 style="color: #11346b;">Lo Más Nuevo</h2>
-            </div>
-                <div id="carouselExampleIndicators2" class="carousel m-0 slide w-100 row justify-content-center" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row pt-2 pb-2">
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
+        </ngx-slick-carousel>
+        <div class="w-100 text-center">
+            <h2 style="color: #11346b;">Lo Más Nuevo</h2>
+        </div>
+        <ngx-slick-carousel class="carousel mt-2 mb-2" #slickModal="slick-carousel" [config]="slideConfig" >
+            <div ngxSlickItem  *ngFor="let product of newProducts" class="slide row justify-content-center">
+                <div class="col-md-10">
+                    <div class="wsk-cp-product">
+                      <div class="wsk-cp-img">
+                        <img src="{{this.uri+'getImgProd/'+product.imgProducto}}" alt="Product" class="img-responsive" />
+                      </div>
+                      <div class="wsk-cp-text">
+                        <div class="category">
+                          <span>{{product.categoria[0].nameCategoria}}</span>
+                        </div>
+                        <div class="title-product">
+                          <h3>{{product.nameProducto}}</h3>
+                        </div>
+                        <div class="description-prod">
+                          <p style="white-space: pre-line">{{product.descProducto}}</p>
+                        </div>
+                        <div class="card-footer">
+                          <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
+                            <div class="wcf-right d-flex">
+                                <a  class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
+                                <a  class="buy-btn"><i class="fa fa-cart-plus"></i></a>
                             </div>
                         </div>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="row pt-2 pb-2">
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>    
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                            <div class="card ml-4 p-2" style="width: 18rem;">
-                                <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                    <div class="row pt-2 pb-2">
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card ml-4 p-2" style="width: 18rem;">
-                            <img class="card-img-top" src="../../../../assets/carousel1.jpg" alt="Card image cap">
-                            <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                    </a>
                 </div>
+            </div>
+        </ngx-slick-carousel>                
     </div>
 </section>

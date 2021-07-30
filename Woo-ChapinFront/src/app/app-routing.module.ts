@@ -18,6 +18,7 @@ import { EditarCuentaComponent } from './components/general/MiCuenta/editar-cuen
 import { MisDireccionesComponent } from './components/general/MiCuenta/mis-direcciones/mis-direcciones.component';
 import { MisPedidosComponent } from './components/general/MiCuenta/mis-pedidos/mis-pedidos.component';
 import { RegisterComponent } from './components/general/register/register.component';
+import { SearchCategoryComponent } from './components/general/search-category/search-category.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'miCuenta/editar', component: EditarCuentaComponent},
   {path: 'miCuenta/direcciones', component: MisDireccionesComponent},
   {path: 'miCuenta/pedidos', component: MisPedidosComponent},
+  {path: 'categoria/:id', component: SearchCategoryComponent}
 ];
 
 @NgModule({

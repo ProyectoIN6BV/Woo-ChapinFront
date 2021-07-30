@@ -17,15 +17,7 @@
           <a class="nav-link text-light" routerLink="login">Login</a>
         </li>
         <li class="nav-item dropdown" *ngIf="role != 'ROLE_ADMIN'">
-          <a class="nav-link text-light dropdown-toggle" routerLink="categorias" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categorías
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <a class="nav-link text-light" routerLink="categorias">Categorías</a>
         </li>
         <li class="nav-item" *ngIf="role != 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="cart">Carrito</a>
