@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   public user:User;
   public password2;
   constructor( private notifierService:NotifierService, private restUser:RestUserService) { 
-    this.user = new User('','','','','','','','',[]);
+    this.user = new User('','','','','','','','',[],[]);
     this.notifier = notifierService;
   }
   

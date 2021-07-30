@@ -79,4 +79,27 @@ export class RestUserService {
     return this.http.put(this.uri+'editAccount/'+userId, params,{headers:headers})
     .pipe(map(this.extractData))
   }
+
+  agregarDireccion(direccion, userId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    let data = {
+      "direccion" : direccion
+    }
+    let params = JSON.stringify(data);
+    return this.http.put(this.uri+'addAddress/'+userId, params,{headers:headers})
+    .pipe(map(this.extractData))
+  }
+
+  
+  getDirecciones(userId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+'getusers/'+userId,{headers:headers})
+    .pipe(map(this.extractData))
+  }
 }

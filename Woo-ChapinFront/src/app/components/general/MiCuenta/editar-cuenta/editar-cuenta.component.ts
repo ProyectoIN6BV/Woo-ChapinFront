@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { User } from 'src/app/models/User';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
+
 @Component({
   selector: 'app-editar-cuenta',
   templateUrl: './editar-cuenta.component.html',
@@ -25,7 +26,7 @@ export class EditarCuentaComponent implements OnInit {
   }
 
     
-  editarCuenta(){    
+  editarCuenta(){  
     delete this.user.password;
     delete this.user.role;
     this.restUser.editarCuenta(this.user, this.user._id).subscribe((res:any)=>{

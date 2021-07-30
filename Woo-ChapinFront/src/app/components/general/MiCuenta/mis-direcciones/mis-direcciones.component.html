@@ -11,9 +11,9 @@
                     </div>
                 </div>
                 <hr class="m-3">
-                <div class="w-100 row">
+                <div class="w-100 row" *ngFor="let optionDirecciones of direccioness.direcciones">
                     <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
+                        <textarea readonly class="form-control">{{optionDirecciones.direccion}}</textarea>
                     </div>
                     <div class="col-lg-6">
                         <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
@@ -90,14 +90,14 @@
       <div class="modal-body">
         <form  id="stripe-login">
           <div class="field padding-bottom--24">
-              <label for="direccion">Dirección:</label>
-              <input type="text" name="direccion" id="direccion">
+              <label for="DireccionB">Dirección:</label>
+              <input require type="text" #DireccionB="ngModel" [(ngModel)]="direccion" name="DireccionB" id="DireccionB">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="agregarDireccion()">Guardar</button>
       </div>
     </div>
   </div>
