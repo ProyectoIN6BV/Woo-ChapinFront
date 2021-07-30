@@ -8,6 +8,7 @@ export class User{
         public email: String,
         public phone: String,
         public role: String,
-        public facturas: []
+        public facturas: [],
+        public direcciones: []
     ){}
 }
