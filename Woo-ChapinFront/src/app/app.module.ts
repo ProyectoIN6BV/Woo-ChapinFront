@@ -31,6 +31,10 @@ import { PedidoRegisterComponent } from './components/admin/pedidos/pedido-regis
 import { PedidoAddComponent } from './components/admin/pedidos/pedido-add/pedido-add.component';
 import { PedidoSidebarComponent } from './components/admin/pedidos/pedido-sidebar/pedido-sidebar.component';
 import { PersonalizarComponent } from './components/admin/personalizar/personalizar.component';
+import { MisPedidosComponent } from './components/general/MiCuenta/mis-pedidos/mis-pedidos.component';
+import { MisDireccionesComponent } from './components/general/MiCuenta/mis-direcciones/mis-direcciones.component';
+import { EditarCuentaComponent } from './components/general/MiCuenta/editar-cuenta/editar-cuenta.component';
+import { SidebarComponent } from './components/general/MiCuenta/sidebar/sidebar.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -98,7 +102,11 @@ const customNotifierOptions: NotifierOptions = {
     PedidoRegisterComponent,
     PedidoAddComponent,
     PedidoSidebarComponent,
-    PersonalizarComponent
+    PersonalizarComponent,
+    MisPedidosComponent,
+    MisDireccionesComponent,
+    EditarCuentaComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
