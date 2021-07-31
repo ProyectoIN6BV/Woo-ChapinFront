@@ -32,6 +32,7 @@ export class MisDireccionesComponent implements OnInit {
         this.notifier.notify("success", res.message);
         localStorage.setItem("user", JSON.stringify(res.pushAddress))
         this.user = res.pushAddress;
+        this.getDirecciones();
       }else{
         this.notifier.notify("error", res.message);
         this.user;
@@ -43,7 +44,6 @@ export class MisDireccionesComponent implements OnInit {
     this.restUser.getDirecciones(this.user._id).subscribe((res:any)=>{
       if(res.addresFind){
         this.direccioness = res.addresFind;
-        this.notifier.notify("success", res.message);
       }else{
         this.notifier.notify("error",res.message);
       }

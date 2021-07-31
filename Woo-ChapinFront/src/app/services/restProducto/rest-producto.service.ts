@@ -122,4 +122,20 @@ export class RestProductoService {
     return this.http.get(this.uri+"newProduct", this.httpOptions)
     .pipe(map(this.extractData));
   }
+
+  getProductCategory(id){
+    return this.http.get(this.uri+"getProductsCategory/"+id, this.httpOptions)
+    .pipe(map(this.extractData));
+  }
+
+
+  getProductId(id){
+    return this.http.get(this.uri+"getProductId/"+id, this.httpOptions)
+    .pipe(map(this.extractData));
+  }
+
+  getProductTags(id){
+    return this.http.get(this.uri+"getProductTag/"+id, this.httpOptions)
+    .pipe(map(this.extractData));
+  }
 }

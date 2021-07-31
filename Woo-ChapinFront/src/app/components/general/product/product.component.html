@@ -1,0 +1,74 @@
+
+<app-carousel ></app-carousel>
+<section>
+    <div class="container pt-3 pb-3  w-100">
+        <div class="w-100 text-center">
+            <h2 *ngIf="product != null" style="color: #11346b;">{{product.nameProducto}}</h2>
+        </div>
+        <div class="row w-100 justify-content-center m-0">
+            <div class="col-md-10">
+                <div class="wsk-cp-product row" *ngIf="product != null">
+                    <div class="wsk-cp-img col-lg-6">
+                        <img  src="{{this.uri+'getImgProd/'+product.imgProducto}}" alt="Product" class="img-responsive" />
+                    </div>
+                    <div class="wsk-cp-text col-lg-6 row" style="align-items: center;">
+                        
+                        <div class="col-lg-12">
+                            <h3 style="color: #11346b;">Descripción</h3>
+                        </div>
+                        <div class="col-lg-12">
+                            <p style="white-space: pre-line">{{product.descProducto}}</p>
+                        </div>
+                        <div class="row col-lg-12">
+                            <div class="col-lg-3 mb-2 ml-2" *ngFor="let tag  of product.tags; let i=index">
+                              <div class="border border-primary row text-center justify-content-center rounded text-center" style="align-items: center;">
+                                  <span class="tag" style="font-size: 14px;">{{tag}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="card-footer1 col-lg-12">
+                            <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
+                            <div class="wcf-right d-flex">
+                                <button >Agregar al carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center w-100">
+            <h2 style="color: #11346b;">Productos Similares:</h2>
+        </div>
+        <div class="w-100">
+            <ngx-slick-carousel class="carousel mt-2 mb-2" #slickModal="slick-carousel" [config]="slideConfig" >
+                <div ngxSlickItem  *ngFor="let product of similarProducts" class="slide row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="wsk-cp-product">
+                          <div class="wsk-cp-img">
+                            <img src="{{this.uri+'getImgProd/'+product.imgProducto}}" alt="Product" class="img-responsive" />
+                          </div>
+                          <div class="wsk-cp-text">
+                            <div class="category">
+                              <span>{{product.categoria[0].nameCategoria}}</span>
+                            </div>
+                            <div class="title-product">
+                              <h3>{{product.nameProducto}}</h3>
+                            </div>
+                            <div class="description-prod">
+                              <p style="white-space: pre-line">{{product.descProducto}}</p>
+                            </div>
+                            <div class="card-footer">
+                              <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
+                                <div class="wcf-right d-flex">
+                                    <a routerLink="../../product/{{product._id}}"   class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
+                                  <a  class="buy-btn"><i class="fa fa-cart-plus"></i></a>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+</section>

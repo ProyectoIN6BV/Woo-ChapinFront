@@ -1,6 +1,34 @@
 <app-carousel ></app-carousel>
 
 <section>
-    <div class="container pt-3 pb-3  w-100">
+    <div class="container pl-0 pr-0 pb-3  w-100">
+        <app-search-sidebar (click)="evento()"></app-search-sidebar>
+        <div class="row w-100">
+            <div class="col-md-4" *ngFor="let product of products">
+                <div class="wsk-cp-product">
+                  <div class="wsk-cp-img">
+                    <img src="{{this.uri+'getImgProd/'+product.imgProducto}}" alt="Product" class="img-responsive" />
+                  </div>
+                  <div class="wsk-cp-text">
+                    <div class="category">
+                      <span>{{product.categoria[0].nameCategoria}}</span>
+                    </div>
+                    <div class="title-product">
+                      <h3>{{product.nameProducto}}</h3>
+                    </div>
+                    <div class="description-prod">
+                      <p style="white-space: pre-line">{{product.descProducto}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
+                        <div class="wcf-right d-flex">
+                            <a routerLink="../../product/{{product._id}}"  class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
+                            <a  class="buy-btn"><i class="fa fa-cart-plus"></i></a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
