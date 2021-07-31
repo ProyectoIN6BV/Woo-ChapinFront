@@ -17,12 +17,18 @@
             <h2 style="color: #11346b;">Tu Carrito</h2>
         </div>
         <div class="w-100 row justify-content-center mb-3">
-            <div class="col-lg-9 row mt-2 shadow p-2">
-                <div class="col-lg-6 text-center">
+            <div *ngIf="carrito != undefined" class="col-lg-9 row mt-2 shadow p-2">
+                <div class="col-lg-4 text-center">
                     <h4>Producto</h4>
+                </div>
+                <div class="col-lg-1">
+
                 </div>
                 <div class="col-lg-2 text-center">
                     <h4>Cantidad</h4>
+                </div>
+                <div class="col-lg-1">
+
                 </div>
                 <div class="col-lg-2 text-center">
                     <h4>Precio</h4>
@@ -33,29 +39,35 @@
                 <div class="col-lg-12 m-2">
                   <hr>
                 </div>
-                <div class="w-100 row pb-2">
-                    <div class="col-lg-6 text-center">
+                <div *ngFor="let detalle of carrito.detalles" class="w-100 row pb-2">
+                    <div class="col-lg-4 text-center">
                         <div class="d-flex">
-                            <img style="max-height: 40px;" src="../../../../assets/carousel1.jpg"><span class="ml-2"> Producto 1</span>
+                            <img style="max-height: 40px; min-width: 75px" src="{{uri+'getImgProd/'+detalle.producto.imgProducto}}"><span class="ml-2"> {{detalle.producto.nameProducto}}</span>
                         </div>
                     </div>
-                    <div class="col-lg-2 text-center">
-                        <input type="number" class="form-control text-center" value="2" >
+                    <div class="col-lg-1">
+                      <button (click)="DeleteValor(detalle.producto._id)" class="w-100 btn btn-danger">-</button>
+                    </div>
+                    <div class="col-lg-2 pl-1 pr-1 text-center">
+                        <input min="0" readonly type="number" class="form-control text-center" value="{{detalle.cantidad}}" >
+                    </div>
+                    <div class="col-lg-1">
+                      <button (click)="addCart(detalle.producto._id)" class="w-100 btn btn-primary">+</button>
                     </div>
                     <div class="col-lg-2 text-center">
-                        <span>100.00</span>
+                        <span>{{detalle.producto.precio}}</span>
                     </div>
                     <div class="col-lg-2 text-center">
-                        <span>200.00</span>
+                        <span>{{detalle.producto.precio*detalle.cantidad}}</span>
                     </div>
                     <div class="w-100">
                         <hr class="m-2">
-                        <div class="w-100 row" style="justify-content: flex-end;">
-                            <div class="col-lg-2 text-center">
-                                <span>200.00</span>
-                            </div>
-                        </div>
                     </div>
+                </div>
+                <div class="w-100 row" style="justify-content: flex-end;">
+                  <div class="col-lg-2 text-center">
+                      <span>{{carrito.total}}</span>
+                  </div>
                 </div>
             </div>
         </div>
@@ -95,64 +107,88 @@
               </div>
               <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9; position: relative">
                 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-                  <h1><a href="http://blog.stackfindover.com/" rel="dofollow"> Envío</a></h1>
+                  <h1><a  rel="dofollow"> Envío</a></h1>
                 </div>
-                <div class="formbg-outer pb-2">
+                <div *ngIf="carrito != undefined" class="formbg-outer pb-2">
                   <div class="formbg col-lg-9">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form id="stripe-login">
+                      <form (ngSubmit)="crearFactura()" id="stripe-login">
+                        <div class="d-flex" style="align-items: center;">
+                          <input type="checkbox" [(ngModel)]="isChecked" (change)="setData()" name="check" id="check">
+                          <label for="check" class="m-0 pl-1" > cargar datos de mi cuenta</label>
+                        </div>
                         <div class="row">
                             <div class="field padding-bottom--24 col-lg-6 pr-2">
-                                <label for="email">Nombre del Receptor:</label>
-                                <input type="email" name="email">
+                                <label for="nameReceiver">Nombre del Receptor:</label>
+                                <input type="email" #nameReceiver="ngModel" [(ngModel)]="envio.nameReceiver" name="nameReceiver" id="nameReceiver">
                             </div>
                             <div class="field padding-bottom--24 col-lg-6">
-                                <label for="email">Apellido del receptor:</label>
-                                <input type="email" name="email">
+                                <label for="lastNameReceiver">Apellido del receptor:</label>
+                                <input type="text" #lastNameReceiver="ngModel" [(ngModel)]="envio.lastNameReceiver" id="lastNameReceiver" name="lastNameReceiver">
                             </div>
                         </div>
                         <div class="row">
                             <div class="field padding-bottom--24 col-lg-6 pr-2">
-                                <label for="email">Teléfono:</label>
-                                <input type="email" name="email">
+                                <label for="phone">Teléfono:</label>
+                                <input type="number" #phone="ngModel" [(ngModel)]="envio.phone" id="phone" name="phone">
                             </div>
                             <div class="field padding-bottom--24 col-lg-6">
                                 <label for="email">Municipio:</label>
-                                <select class="form-contro">
-                                    <option>municipio1</option>
-                                    <option>municipio1</option>
-                                    <option>municipio1</option>
+                                <select #se  (click)="selectEnvio(se.value)"   class="form-control">
+                                    <option disabled selected> Seleccione una opción...</option>
+                                  
+                                    <option *ngFor="let municipio of municipios"  value="{{municipio._id}}" >{{municipio.nameMunicipio}}</option>
+                                  
                                 </select>
                             </div>
                         </div>
                         <div class="field padding-bottom--24">
                             <label for="email">Dirección de correo electrónico:</label>
-                            <input type="email" name="email">
+                            <input type="email" #address="ngModel" name="address" id="address" [(ngModel)]="envio.address" name="email">
                         </div>
                         <div class="field padding-bottom--24">
                           <div class="grid--50-50">
-                            <label for="password">Dirección Específica (Número de casa, calle)</label>
+                            <label for="address">Dirección Específica (Número de casa, calle)</label>
                           </div>
-                          <textarea></textarea>
+                          <textarea #specificAddress="ngModel" name="specificAddress" id="specificAddress" [(ngModel)]="envio.specificAddress"></textarea>
+                          <button class="btn btn-primary p-2 mt-2 mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Ver Direcciones:
+                          </button>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect2">Direcciones Agregadas:</label>
+                                <select multiple class="form-control" (change)="selectDireccion($event.target.value)" id="exampleFormControlSelect2">
+                                  <option *ngFor="let direccion of direcciones">{{direccion.direccion}}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
-                              <label for="password">Breve Descripción de indicaciones</label>
+                              <label for="reference">Breve Descripción de indicaciones</label>
                             </div>
-                            <textarea></textarea>
+                            <textarea  #reference="ngModel" name="reference" id="reference" [(ngModel)]="envio.reference"></textarea>
                         </div>  
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
                               <label for="password">costo del envío(Generado automáticamente)</label>
                             </div>
-                            <input type="number">
+                            <input type="number" readonly value="{{valor}}">
                         </div>  
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
                               <label for="password">Total:</label>
                             </div>
-                            <input type="number">
+                            <input type="number" readonly  value="{{carrito.total}}">
+                        </div>  
+                        <div class="field padding-bottom--24">
+                          <div class="grid--50-50">
+                            <label for="nit">NIT:</label>
+                          </div>
+                          <input type="text" name="nit" id="nit" #nit="ngModel" [(ngModel)]="NIT" >
                         </div>  
                         <div class="text-center">
                             <input type="submit" name="submit" value="Finalizar Pedido">              
