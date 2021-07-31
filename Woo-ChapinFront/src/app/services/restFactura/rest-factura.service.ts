@@ -72,7 +72,6 @@ export class RestFacturaService {
     console.log(params)
     return this.http.post(this.uri+userId+"/crearFactura",params,{headers:headers})
     .pipe(map(this.extractData));
-
   }
   countPedido(){
     let headers = new HttpHeaders({
@@ -80,6 +79,15 @@ export class RestFacturaService {
       'Authorization': this.getToken()
     })
     return this.http.get(this.uri+"countPedido", {headers:headers})
+    .pipe(map(this.extractData));
+  }
+
+  totalVendido(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+"totalVendido", {headers:headers})
     .pipe(map(this.extractData));
   }
 }

@@ -16,6 +16,7 @@ export class HomeAdminComponent implements OnInit {
   public readonly notifier;
   public numberUser;
   public numberFac;
+  public tVendido;
   public user:User;
 
   constructor(private restUserService: RestUserService, private restNotifier:NotifierService,private restFacturaService: RestFacturaService) {
@@ -25,6 +26,7 @@ export class HomeAdminComponent implements OnInit {
   ngOnInit(): void {
     this.countUser();
     this.countPedido();
+    this.totalVendido();
   }
 
   countUser(){
@@ -45,6 +47,18 @@ export class HomeAdminComponent implements OnInit {
         this.numberFac = res.pedidoCount;        
       }else{
         this.numberFac = res.pedidoCount;
+      }
+    }, error=>{
+      this.notifier.notify("error",error.error.message);
+    })
+  }
+
+  totalVendido(){
+    this.restFacturaService.totalVendido().subscribe((res:any)=>{
+      if(res.tVendido){
+        this.tVendido = res.tVendido;        
+      }else{
+        this.tVendido = res.sum;
       }
     }, error=>{
       this.notifier.notify("error",error.error.message);
