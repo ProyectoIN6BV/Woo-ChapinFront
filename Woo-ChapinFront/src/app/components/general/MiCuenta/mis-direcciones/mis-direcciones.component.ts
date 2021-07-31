@@ -13,8 +13,7 @@ export class MisDireccionesComponent implements OnInit {
   public password2;
   private readonly notifier;
   public direccion;
-  public direccioness:User;
-
+  public direccioness;
 
   constructor( private notifierService:NotifierService, private restUser:RestUserService) { 
     this.user = restUser.getUser();
@@ -50,5 +49,24 @@ export class MisDireccionesComponent implements OnInit {
     }, error=>{
       this.notifier.notify("error",error.error.message);
     })
+  }
+
+  removeAddress(){ 
+    this.restUser.removeAddress(this.direccioness.direccion, this.user._id).subscribe((res:any)=>{
+      if(res.pushAddress){
+        this.notifier.notify("success", res.message);
+        this.getDirecciones();
+      }else{
+        this.notifier.notify("error", res.message);
+        this.user;
+      }
+   }, error=> this.notifier.notify("error", "ocurrió un error en la consulta")
+   );
+  }
+
+  selectDireccion(direccion){
+    console.log("Select");
+    this.direccioness = direccion;
+    console.log(this.direccioness);        
   }
 }

@@ -89,6 +89,7 @@ export class RestUserService {
       "direccion" : direccion
     }
     let params = JSON.stringify(data);
+    console.log(this.uri+'addAddress/'+userId, params,{headers:headers})
     return this.http.put(this.uri+'addAddress/'+userId, params,{headers:headers})
     .pipe(map(this.extractData))
   }
@@ -100,6 +101,27 @@ export class RestUserService {
       'Authorization': this.getToken()
     })
     return this.http.get(this.uri+'getusers/'+userId,{headers:headers})
+    .pipe(map(this.extractData))
+  }
+
+  countUser(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+"countUser", {headers:headers})
+    .pipe(map(this.extractData));
+  }
+
+  removeAddress(addres, id){
+    let params = JSON.stringify(addres);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+
+    let direccion = '{"direccion":'+params+"}";
+    return this.http.put(this.uri+'removeAddress/'+id, direccion,{headers:headers})
     .pipe(map(this.extractData))
   }
 }

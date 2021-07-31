@@ -76,3 +76,13 @@ export class RestFacturaService {
   }
 
 }
+
+  countPedido(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+"countPedido", {headers:headers})
+    .pipe(map(this.extractData));
+  }
+}
