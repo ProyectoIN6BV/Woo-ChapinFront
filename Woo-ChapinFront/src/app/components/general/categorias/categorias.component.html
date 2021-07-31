@@ -22,7 +22,7 @@
             <div class="col-md-4" *ngFor="let category of categorias">
                 <div class="wsk-cp-product">
                   <div class="wsk-cp-img">
-                    <img src="{{uri+'getImgCat/'+category.imgCategoria}}" alt="Category" class="img-responsive" />
+                    <img *ngIf="category.imgCategoria != undefined" src="{{uri+'getImgCat/'+category.imgCategoria}}" alt="Category" class="img-responsive" />
                   </div>
                   <div class="wsk-cp-text">
                     <div class="category">

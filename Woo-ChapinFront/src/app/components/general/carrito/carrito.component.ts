@@ -75,33 +75,42 @@ export class CarritoComponent implements OnInit {
   }
 
   getDirecciones(){
-    this.restUser.getDirecciones(this.user._id).subscribe((res:any)=>{
-      if(res.addresFind){
-        this.direcciones = res.addresFind.direcciones;
-      }else{
-        this.notifier.notify("error",res.message);
-      }
-    } ,error=> this.notifier.notify("error", error.error.message))
+    if(this.user != null){
+      this.restUser.getDirecciones(this.user._id).subscribe((res:any)=>{
+        if(res.addresFind){
+          this.direcciones = res.addresFind.direcciones;
+        }else{
+          this.notifier.notify("error",res.message);
+        }
+      } ,error=> this.notifier.notify("error", error.error.message))
+    }
   }
 
   getMunicipio(){
-    this.restMunicipio.getMunicipios().subscribe((res:any)=>{
-      if(res.municipios){
-        this.municipios = res.municipios;
-      }else{
-        this.notifier.notify("error",res.message);
-      }
-    },error=> this.notifier.notify("error", error.error.message))
+    if(this.user != null){
+      this.restMunicipio.getMunicipios().subscribe((res:any)=>{
+        if(res.municipios){
+          this.municipios = res.municipios;
+        }else{
+          this.notifier.notify("error",res.message);
+        }
+      },error=> this.notifier.notify("error", error.error.message))
+    }
   }
 
   getCarrito(){
-    this.restCart.getCarrito(this.user._id).subscribe((res:any)=>{
-      if(res.carritoFind){
-        this.carrito = res.carritoFind;
-      }else{
-        this.notifier.notify("error",res.message);
-      }
-    }, error=> this.notifier.notify("error", error.error.message))
+    if(this.user != null){
+      this.restCart.getCarrito(this.user._id).subscribe((res:any)=>{
+        if(res.carritoFind){
+          this.carrito = res.carritoFind;
+        }else{
+          this.notifier.notify("error",res.message);
+          this.carrito = new Carrito('',[],null,'');
+        }
+      }, error=> this.notifier.notify("error", error.error.message))
+    }else{
+      this.notifier.notify("info", "Ingresa sesión para ver el carrito");
+    }
   }
 
   addCart(productId){
@@ -144,9 +153,10 @@ export class CarritoComponent implements OnInit {
       if(res.facturaFind){
         this.crearEnvio(res.facturaFind._id);
       }else{
+        this.getCarrito();
         this.notifier.notify("error", res.message);
       }
-    }, error=> this.notifier.notify("error", "Error general: "+ error.error.message));
+    }, error=> {this.notifier.notify("error", "Error general: "+ error.error.message),    this.getCarrito();  });
   }
 
   crearEnvio(facId){
