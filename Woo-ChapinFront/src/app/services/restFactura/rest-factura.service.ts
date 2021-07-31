@@ -73,6 +73,7 @@ export class RestFacturaService {
     return this.http.post(this.uri+userId+"/crearFactura",params,{headers:headers})
     .pipe(map(this.extractData));
   }
+ 
   countPedido(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

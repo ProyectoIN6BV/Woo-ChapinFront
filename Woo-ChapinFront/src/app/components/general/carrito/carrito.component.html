@@ -113,7 +113,7 @@
                   <div class="formbg col-lg-9">
                     <div class="formbg-inner padding-horizontal--48">
                       
-                      <form (ngSubmit)="crearFactura()" id="stripe-login">
+                      <form #register="ngForm" (ngSubmit)="crearFactura(register)" id="stripe-login">
                         <div class="d-flex" style="align-items: center;">
                           <input type="checkbox" [(ngModel)]="isChecked" (change)="setData()" name="check" id="check">
                           <label for="check" class="m-0 pl-1" > cargar datos de mi cuenta</label>

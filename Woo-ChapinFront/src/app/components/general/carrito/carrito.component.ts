@@ -147,11 +147,13 @@ export class CarritoComponent implements OnInit {
     }
   }
 
-  crearFactura(){
+  crearFactura(form){
     console.log(this.NIT);
     this.restFactura.crearFactura(this.user._id, this.NIT).subscribe((res:any)=>{
-      if(res.facturaFind){
-        this.crearEnvio(res.facturaFind._id);
+      if(res.facturaFind  ){
+        this.crearEnvio(res.facturaFind._id, form);
+        console.log(res.message);
+
       }else{
         this.getCarrito();
         this.notifier.notify("error", res.message);
@@ -159,9 +161,11 @@ export class CarritoComponent implements OnInit {
     }, error=> {this.notifier.notify("error", "Error general: "+ error.error.message),    this.getCarrito();  });
   }
 
-  crearEnvio(facId){
+  crearEnvio(facId,form){
     this.restEnvio.createEnvio(this.envio,this.municipioSelected._id,this.user._id,facId).subscribe((res:any)=>{
-      if(res){
+      
+      if(res.envioSaved){
+        form.reset();
         this.notifier.notify("success", res.message);
         this.getCarrito();
       }else{
