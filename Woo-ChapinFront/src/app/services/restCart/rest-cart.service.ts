@@ -6,8 +6,7 @@ import { CONNECTION } from '../global';
 @Injectable({
   providedIn: 'root'
 })
-export class RestFacturaService {
-
+export class RestCartService {
   public uri: string;
   public token;
   public user;
@@ -57,29 +56,39 @@ export class RestFacturaService {
     this.uri = CONNECTION.URI;
   }
 
-
-  crearFactura(userId, NIT){
+  addProductCart(userId, productId, cantidad){
     let data = {
-      "nit": NIT
+      "cantidad": cantidad
     }
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    })
-
     let params = JSON.stringify(data);
-    console.log(params)
-    return this.http.post(this.uri+userId+"/crearFactura",params,{headers:headers})
-    .pipe(map(this.extractData));
-
-  }
-  countPedido(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.getToken()
     })
-    return this.http.get(this.uri+"countPedido", {headers:headers})
+    
+    return this.http.post(this.uri+userId+"/agregarCarrito/"+productId,params,{headers:headers})
+    .pipe(map(this.extractData));
+
+  }
+
+
+  getCarrito(userId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+userId+"/viewCarrito",{headers:headers})
     .pipe(map(this.extractData));
   }
+
+  deleteValor(userId, productId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': this.getToken()
+    })
+    return this.http.put(this.uri+userId+"/deleteProductoCarrito/"+productId,{},{headers:headers})
+    .pipe(map(this.extractData));
+  }
+
 }

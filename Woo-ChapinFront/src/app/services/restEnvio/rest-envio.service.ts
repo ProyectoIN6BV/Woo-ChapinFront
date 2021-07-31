@@ -6,8 +6,9 @@ import { CONNECTION } from '../global';
 @Injectable({
   providedIn: 'root'
 })
-export class RestFacturaService {
+export class RestEnvioService {
 
+  
   public uri: string;
   public token;
   public user;
@@ -56,30 +57,21 @@ export class RestFacturaService {
   constructor(private http:HttpClient) { 
     this.uri = CONNECTION.URI;
   }
+  
 
+  createEnvio(envio,municipio,user,fac){
 
-  crearFactura(userId, NIT){
-    let data = {
-      "nit": NIT
-    }
+    let params = JSON.stringify(envio);
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.getToken()
     })
-
-    let params = JSON.stringify(data);
-    console.log(params)
-    return this.http.post(this.uri+userId+"/crearFactura",params,{headers:headers})
+    
+    return this.http.post(this.uri+"createEnvio/"+municipio+"/"+user+"/"+fac,params,{headers:headers})
     .pipe(map(this.extractData));
 
   }
-  countPedido(){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    })
-    return this.http.get(this.uri+"countPedido", {headers:headers})
-    .pipe(map(this.extractData));
-  }
+
+
 }

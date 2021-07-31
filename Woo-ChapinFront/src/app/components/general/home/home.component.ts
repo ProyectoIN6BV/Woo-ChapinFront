@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
+import { User } from 'src/app/models/User';
 import { CONNECTION } from 'src/app/services/global';
+import { RestCartService } from 'src/app/services/restCart/rest-cart.service';
 import { RestProductoService } from 'src/app/services/restProducto/rest-producto.service';
 
 @Component({
@@ -13,6 +15,7 @@ export class HomeComponent implements OnInit {
   bestProducts:any[];
   newProducts:[];
   public uri;
+  public user:User;
   private readonly notifier;
   slideConfig = {"slidesToShow": 3, "slidesToScroll": 3, "autoplay": true,responsive: [
     {
@@ -34,11 +37,12 @@ export class HomeComponent implements OnInit {
       }
     }
   ]};
-  constructor(private notifierService:NotifierService, private restProduct:RestProductoService) { 
+  constructor(private notifierService:NotifierService, private restProduct:RestProductoService, private restCart:RestCartService) { 
     this.getBestSellers();
     this.getNewProcuct();
     this.uri = CONNECTION.URI;
     this.notifier = this.notifierService;
+    this.user = restCart.getUser();
   }
 
   ngOnInit(): void {
@@ -64,5 +68,22 @@ export class HomeComponent implements OnInit {
         this.notifier.notify("error", res.message);
       }
     }, error=> this.notifier.notify("error", "Error general: "+ error.error.message));
+  }
+
+
+  addCart(productId){
+    console.log(this.user);
+    if(this.user != null){
+      this.restCart.addProductCart(this.user._id,productId,1).subscribe((res:any)=>{
+        console.log(res);
+        if(res.carritoFind2 || res.carritoUpdated || res.carritoUp){
+          this.notifier.notify("success", res.message);
+        }else{
+          this.notifier.notify("error", res.message);
+        }
+      }, error=> this.notifier.notify("error", "Error general: "+ error.error.message));
+    }else{
+      this.notifier.notify("info", "Para adquirir un producto debes de ingresar sesión");
+    }
   }
 }
