@@ -74,9 +74,6 @@ export class RestFacturaService {
     .pipe(map(this.extractData));
 
   }
-
-}
-
   countPedido(){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
