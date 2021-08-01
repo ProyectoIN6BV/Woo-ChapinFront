@@ -27,6 +27,7 @@ export class HomeAdminComponent implements OnInit {
     this.countUser();
     this.countPedido();
     this.totalVendido();
+    
   }
 
   countUser(){
@@ -54,11 +55,13 @@ export class HomeAdminComponent implements OnInit {
   }
 
   totalVendido(){
+    
     this.restFacturaService.totalVendido().subscribe((res:any)=>{
-      if(res.tVendido){
-        this.tVendido = res.tVendido;        
+      if(res.sum){
+        this.tVendido = res.sum;   
+        console.log(this.tVendido)     
       }else{
-        this.tVendido = res.sum;
+        this.tVendido = "0.00"
       }
     }, error=>{
       this.notifier.notify("error",error.error.message);

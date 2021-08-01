@@ -142,4 +142,10 @@ export class RestUserService {
     return this.http.get(this.uri+'getFac/'+facId,{headers:headers})
     .pipe(map(this.extractData))
   }
+
+
+  getImages(){
+    return this.http.get(this.uri+'getImageName/',this.httpOptions)
+    .pipe(map(this.extractData))
+  }
 }

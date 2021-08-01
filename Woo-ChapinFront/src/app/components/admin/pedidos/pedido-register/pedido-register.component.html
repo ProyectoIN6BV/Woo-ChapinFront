@@ -2,64 +2,72 @@
     <app-pedido-sidebar></app-pedido-sidebar>
     <div class="container pb-3  w-100 pt-3">
         <div class="w-100 row justify-content-center m-0">
-            <div class="shadow col-lg-9 pt-2 pb-2">
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <h2>Producto</h2>
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <h2>Estado</h2>
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <h2>Total</h2>
-                    </div>
-                </div>
-                <hr class="m-0">
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <img style="height: 100px;" src="../../../../../assets/LAPTOP.jpg"><span>Laptop HP</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                        <span class="w-100">Pendiente</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                       <span class="w-100">2500.00</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-success"><i class="fa fa-check"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-primary disabled ml-1">Entregado</button>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                </div>
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <img style="height: 100px;" src="../../../../../assets/LAPTOP.jpg"><span>Laptop HP</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                        <span class="w-100">Pendiente</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                       <span class="w-100">2500.00</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-success"><i class="fa fa-check"></i></button>
-                        <button type="button" data-toggle="modal" data-target="#modalDelete" class="btn btn-primary disabled ml-1">Entregado</button>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                </div>
-            </div>
+                <table class="table col-lg-10 shadow table-responsive-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">Factura</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let envio of envios">
+                        <th scope="row">
+                            <span>{{envio.factura[0]._id}}</span>                        
+                            <textarea readonly class="form-control">{{envio.specificAddress}}</textarea>                        
+                        </th>
+                        <td>{{envio.factura[0].fecha}}</td>
+                        <td>{{envio.factura[0].total}}</td>
+                        <td><button type="button" data-toggle="modal" data-target="#view" (click)="selectEnvio(envio)" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button></td>
+                      </tr>
+                    </tbody>
+                </table>
+            
         </div>
     </div>
 </section>
+
+<div class="modal fade bd-example-modal-lg" id="view" tabindex="-1" role="dialog" aria-labelledby="viewTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="viewTitle">Detalles</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="envio != undefined">
+            <table class="table table-responsive-sm">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Producto:</th>
+                    <th scope="col">Cantidad:</th>
+                    <th scope="col">Precio:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let detalle of envio.factura[0].detalles">
+                    <th scope="row"><img width="100px" src="{{this.uri+'getImgProd/'+detalle.producto.imgProducto}}"></th>
+                    <td style="vertical-align: middle;">{{detalle.producto.nameProducto}}</td>
+                    <td style="vertical-align: middle;">{{detalle.cantidad}}</td>
+                    <td style="vertical-align: middle;">{{ detalle.producto.precio}}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div>
+                <h2>Datos del Usuario:</h2>
+                <span class="text-muted">Nombre: </span><span>{{envio.nameReceiver}}</span><br>
+                <span class="text-muted">Apellido: </span><span>{{envio.lastNameReceiver}}</span><br>
+                <span class="text-muted">Celular: </span><span>{{envio.phone}}</span><br>
+                <span class="text-muted">NIT: </span><span>{{envio.factura[0].nit}}</span><br>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>

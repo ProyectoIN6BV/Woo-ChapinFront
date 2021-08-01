@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit, DoCheck {
   showFixed = false;
   public token;
   public role;
+  public total;
+
   public user:User;
   constructor(public loader: LoaderService,private restUser:RestUserService) { 
     this.token = restUser.getToken();
@@ -23,6 +25,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     this.token = this.restUser.getToken();
     this.user = this.restUser.getUser();
     this.getRole();
+    this.getTotal();
   }
   changeClass(){
 
@@ -47,6 +50,17 @@ export class NavbarComponent implements OnInit, DoCheck {
     }else{
       this.role = this.user.role;
     }
+  }
+
+  getTotal(){
+    if(localStorage.getItem("carrito") == undefined || localStorage.getItem("carrito") == null){ 
+      this.total = "00.00";
+    }else{
+      let carrito = JSON.parse(localStorage.getItem("carrito"));
+      this.total = carrito.total;
+      
+    }
+    
   }
 
   logOut(){

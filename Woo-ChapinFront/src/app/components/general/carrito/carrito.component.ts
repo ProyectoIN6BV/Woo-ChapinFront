@@ -121,6 +121,13 @@ export class CarritoComponent implements OnInit {
         if(res.carritoFind2 || res.carritoUpdated || res.carritoUp){
           this.notifier.notify("success", res.message);
           this.getCarrito();
+          if(res.carritoFind2){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoFind2))
+          }else if(res.carritoUpdated){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoUpdated))
+          }else{
+            localStorage.setItem("carrito", JSON.stringify(res.carritoUp))
+          }
         }else{
           this.notifier.notify("error", res.message);
         }
@@ -138,6 +145,11 @@ export class CarritoComponent implements OnInit {
         if(res.carritoDeleted || res.carritoFind3){
           this.notifier.notify("success", res.message);
           this.getCarrito();
+          if(res.carritoDeleted){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoDeleted))
+          }else if(res.carritoFind3){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoFind3))
+          }
         }else{
           this.notifier.notify("error", res.message);
         }
