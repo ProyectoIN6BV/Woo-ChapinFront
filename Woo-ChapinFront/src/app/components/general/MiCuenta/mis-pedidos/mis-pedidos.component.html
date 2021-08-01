@@ -3,61 +3,28 @@
 <section>
     <div class="container pb-3 pl-0 pr-0  w-100">
         <app-sidebar></app-sidebar>
-        <div class="w-100 row justify-content-center mt-3">
-            <div class="shadow col-lg-9 pt-2 pb-2">
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <h2>Producto</h2>
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <h2>Estado</h2>
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <h2>Total</h2>
-                    </div>
-                </div>
-                <hr class="m-0">
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <img style="height: 100px;" src="../../../../../assets/LAPTOP.jpg"><span>Laptop HP</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                        <span class="w-100">Pendiente</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                       <span class="w-100">2500.00</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="button" data-toggle="modal" data-target="#modalFac" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                </div>
-                <div class="w-100 row">
-                    <div class="col-lg-6">
-                        <img style="height: 100px;" src="../../../../../assets/LAPTOP.jpg"><span>Laptop HP</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                        <span class="w-100">Entregado</span>
-                    </div>
-                    <div class="col-lg-3 text-center row m-0" style="align-items: center;">
-                       <span class="w-100">2500.00</span>
-                    </div>
-                    <div class="col-lg-6">
-                        <textarea readonly class="form-control">Lote 15 mz D villas de Guillen San miguel Petapa</textarea>
-                    </div>
-                    <div class="col-lg-6">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button>
-                    </div>
-                    <div class="col-lg-12">
-                        <hr>
-                    </div>
-                </div>
-            </div>
+        <div class="w-100 row justify-content-center mt-3" *ngIf="envios != undefined">
+            <table class="table col-lg-10 shadow table-responsive-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Factura</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let optionEnvios of envios.envios">
+                    <th scope="row">
+                        <span>{{optionEnvios.factura[0]._id}}</span>                        
+                        <textarea readonly class="form-control">{{optionEnvios.specificAddress}}</textarea>                        
+                    </th>
+                    <td>{{optionEnvios.factura[0].fecha}}</td>
+                    <td>{{optionEnvios.factura[0].total}}</td>
+                    <td><button type="button" data-toggle="modal" data-target="#modalFac" (click)="selectDireccion(optionEnvios)" class="btn btn-primary mr-1"><i class="fa fa-eye"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
     </div>
 </section>
@@ -67,17 +34,34 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalFacTitle">Ver Factura</h5>
+          <h5 class="modal-title" id="modalFacTitle">Productos</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          ...
+        <div class="modal-body" *ngIf="facturas != undefined">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let optionFacturas of facturas.detalles">
+                    <th><img width="100px" src="{{this.uri+'getImgProd/'+optionFacturas.producto.imgProducto}}" alt=""></th>
+                    <td style="text-align: center; vertical-align: middle;">{{optionFacturas.producto.nameProducto}}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{optionFacturas.producto.precio}}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{optionFacturas.cantidad}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>
         </div>
       </div>
     </div>
