@@ -11,11 +11,16 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 export class PersonalizarComponent implements OnInit {
   public images:[];
   public uri;
+  public file:Array<File>;
+  public name;
+  public id;
+  public token;
   private readonly notifier;
   constructor(private restUser: RestUserService, notifierService:NotifierService) { 
     this.notifier =notifierService;
     this.images = null;
     this.uri = CONNECTION.URI;
+    this.token = restUser.getToken();
   }
 
   ngOnInit(): void {
@@ -27,9 +32,36 @@ export class PersonalizarComponent implements OnInit {
     this.restUser.getImages().subscribe((res:any)=>{
       if(res.carouselFind){
         this.images = res.carouselFind.images;
+        this.id = res.carouselFind._id;
       }else{
         this.images = null;
       }
     })
+  }
+
+  updateImg(){
+    if(this.name!=null){
+        this.restUser.setImage(this.id,[],this.file,this.token, 'image',this.name)
+      .then((res:any)=>{
+        if(res.producto){
+          this.notifier.notify("success", res.message);
+          this.getImages();
+        }else{
+          this.notifier.notify("error",res.message);
+          this.getImages();
+        }
+      }).catch((err) => {
+        console.log("error")
+        this.getImages();
+      });
+    }else{
+      this.notifier.notify("error", "seleccione una imagen")
+    }
+  }
+
+  fileChange(fileInput, name){
+    this.file = <Array<File>>fileInput.target.files;
+    this.name = name;
+    
   }
 }

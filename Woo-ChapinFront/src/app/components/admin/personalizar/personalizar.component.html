@@ -46,10 +46,10 @@
                         <label class="ml-2">Imagen {{index+1}}</label>
                     </div>
                     <div class="col-lg-4 row" style="align-items: center; justify-content: center;">
-                        <input type="file" class="form-control">
+                        <input type="file" (change)="fileChange($event, image.image)" class="form-control">
                     </div>
                     <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" (click)="updateImg()" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
                     </div>
                     <div class="w-100">
                         <hr>
