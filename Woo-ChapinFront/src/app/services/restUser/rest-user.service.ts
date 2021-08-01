@@ -124,4 +124,22 @@ export class RestUserService {
     return this.http.put(this.uri+'removeAddress/'+id, direccion,{headers:headers})
     .pipe(map(this.extractData))
   }
+
+  getEnvios(userId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+'getEnvios/'+userId,{headers:headers})
+    .pipe(map(this.extractData))
+  }
+ 
+  getFac(facId){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+'getFac/'+facId,{headers:headers})
+    .pipe(map(this.extractData))
+  }
 }
