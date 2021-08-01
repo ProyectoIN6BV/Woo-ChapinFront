@@ -29,7 +29,7 @@
                         <div class="card-footer1 col-lg-12">
                             <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
                             <div class="wcf-right d-flex">
-                                <button >Agregar al carrito</button>
+                                <button (click)="addCart(product._id)">Agregar al carrito</button>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                             <div class="card-footer">
                               <div class="wcf-left"><span class="price">Q. {{product.precio}}</span></div>
                                 <div class="wcf-right d-flex">
-                                    <a routerLink="../../product/{{product._id}}"   class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
-                                  <a  class="buy-btn"><i class="fa fa-cart-plus"></i></a>
+                                    <a (click)="getProductS(product._id)" routerLink="../../product/{{product._id}}"   class="buy-btn mr-1"><i class="fa fa-eye"></i></a>
+                                  <a  class="buy-btn" (click)="addCart(product._id)"><i class="fa fa-cart-plus"></i></a>
                                 </div>
                             </div>
                           </div>
