@@ -40,10 +40,10 @@
             <div class="col-lg-9 shadow p-2">
                 <h4>Imágenes Carrousel</h4>
                 <hr>
-                <div class="w-100 row">
+                <div class="w-100 row" *ngFor="let image of images; let index = index">
                     <div class="col-lg-5 text-center">
-                        <img src="../../../../assets/LAPTOP.jpg" style="height: 100px;">
-                        <label>Imagen 1</label>
+                        <img width="100px" src="{{uri+'getImageCarousel/'+image.image}}" style="height: 100px;">
+                        <label class="ml-2">Imagen {{index+1}}</label>
                     </div>
                     <div class="col-lg-4 row" style="align-items: center; justify-content: center;">
                         <input type="file" class="form-control">
@@ -52,37 +52,7 @@
                         <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
                     </div>
                     <div class="w-100">
-                        <hr class="m-0">
-                    </div>
-                </div>
-                <div class="w-100 row">
-                    <div class="col-lg-5 text-center">
-                        <img src="../../../../assets/LAPTOP.jpg" style="height: 100px;">
-                        <label>Imagen 2</label>
-                    </div>
-                    <div class="col-lg-4 row" style="align-items: center; justify-content: center;">
-                        <input type="file" class="form-control">
-                    </div>
-                    <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                    </div>
-                    <div class="w-100">
-                        <hr class="m-0">
-                    </div>
-                </div>
-                <div class="w-100 row">
-                    <div class="col-lg-5 text-center">
-                        <img src="../../../../assets/LAPTOP.jpg" style="height: 100px;">
-                        <label>Imagen 3</label>
-                    </div>
-                    <div class="col-lg-4 row" style="align-items: center; justify-content: center;">
-                        <input type="file" class="form-control">
-                    </div>
-                    <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
-                    </div>
-                    <div class="w-100">
-                        <hr class="m-0">
+                        <hr>
                     </div>
                 </div>
             </div>
