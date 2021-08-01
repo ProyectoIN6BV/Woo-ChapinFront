@@ -78,6 +78,13 @@ export class HomeComponent implements OnInit {
         console.log(res);
         if(res.carritoFind2 || res.carritoUpdated || res.carritoUp){
           this.notifier.notify("success", res.message);
+          if(res.carritoFind2){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoFind2))
+          }else if(res.carritoUpdated){
+            localStorage.setItem("carrito", JSON.stringify(res.carritoUpdated))
+          }else{
+            localStorage.setItem("carrito", JSON.stringify(res.carritoUp))
+          }
         }else{
           this.notifier.notify("error", res.message);
         }
