@@ -15,6 +15,7 @@ export class PersonalizarComponent implements OnInit {
   public name;
   public id;
   public token;
+  public color;
   private readonly notifier;
   constructor(private restUser: RestUserService, notifierService:NotifierService) { 
     this.notifier =notifierService;
@@ -25,6 +26,7 @@ export class PersonalizarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImages();
+    this.getColors();
   }
 
   
@@ -63,5 +65,28 @@ export class PersonalizarComponent implements OnInit {
     this.file = <Array<File>>fileInput.target.files;
     this.name = name;
     
+  }
+
+  getColors(){
+    this.restUser.getColors().subscribe((res:any)=>{
+      if(res.coloresFind){
+        this.color = res.coloresFind;
+        localStorage.setItem("color", JSON.stringify(this.color))
+      }else{
+        this.color = null;
+      }
+    })
+  }
+
+  updateColors(){
+    this.restUser.updateColors(this.color,this.color._id).subscribe((res:any)=>{
+      if(res.updated){
+        this.color = res.updated;
+        localStorage.setItem("color",JSON.stringify(this.color));
+        this.notifier.notify("success",res.message)
+      }else{
+        this.notifier.notify("error",res.message)
+      }
+    })
   }
 }

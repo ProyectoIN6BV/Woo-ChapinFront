@@ -172,4 +172,27 @@ export class RestUserService {
       xhr.send(formData);
     })
   }
+
+  getColors(){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.get(this.uri+'getColores',this.httpOptions)
+    .pipe(map(this.extractData))
+  }
+
+  updateColors(colors, id){
+    let params = JSON.stringify(colors);
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+
+    return this.http.put(this.uri+'updateColores/'+id,params,{headers:headers})
+    .pipe(map(this.extractData))
+    
+  }
+
 }
