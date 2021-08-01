@@ -73,5 +73,18 @@ export class RestEnvioService {
 
   }
 
+  getEnvioAdmin(){
+    
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+
+    return this.http.get(this.uri+"getEnviosAdmin",{headers:headers})
+    .pipe(map(this.extractData));
+
+  }
+
 
 }
