@@ -59,7 +59,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   }
 
   getTotal(){
-    if(localStorage.getItem("carrito") == undefined || localStorage.getItem("carrito") == null){ 
+    if(localStorage.getItem("carrito") == undefined || localStorage.getItem("carrito") == null || localStorage.getItem("carrito") == ""){ 
       this.total = "00.00";
     }else{
       let carrito = JSON.parse(localStorage.getItem("carrito"));
