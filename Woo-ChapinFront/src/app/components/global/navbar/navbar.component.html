@@ -1,3 +1,5 @@
+
+
 <div *ngIf="loader.isLoading | async" class="loader">
   <mat-progress-bar class="fix" mode="indeterminate"></mat-progress-bar>
 </div>
@@ -19,7 +21,7 @@
         <li class="nav-item dropdown" *ngIf="role != 'ROLE_ADMIN'">
           <a class="nav-link text-light" routerLink="categorias">Categorías</a>
         </li>
-        <li class="nav-item" *ngIf="role != 'ROLE_ADMIN'">
+        <li class="nav-item" *ngIf="role != 'ROLE_ADMIN' && token">
           <a class="nav-link text-light" routerLink="cart">Carrito</a>
         </li>
         <li class="nav-item" *ngIf="token && role == 'ROLE_ADMIN'">

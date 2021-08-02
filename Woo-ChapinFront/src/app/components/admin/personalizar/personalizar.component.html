@@ -8,13 +8,14 @@
                     <div class="col-lg-5 text-center">
                         <label>Color Primario</label>
                     </div>
-                    <div class="col-lg-2">
-                        <div style="background-color: #1E457C; height: 50px;">
+                    <div class="col-lg-2" *ngIf="color != null">
+                        <div [ngStyle]="{'background-color':color.primario}" style="height: 50px;">
 
                         </div>
+                        <input type="color" class="form-control p-1" value="{{color.primario}}" [(ngModel)]="color.primario">
                     </div>
                     <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" (click)="updateColors()" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
                     </div>
                     <div class="w-100">
                         <hr>
@@ -24,13 +25,14 @@
                     <div class="col-lg-5 text-center">
                         <label>Color Secundario</label>
                     </div>
-                    <div class="col-lg-2">
-                        <div style="background-color: #1E457C; height: 50px;">
+                    <div class="col-lg-2" *ngIf="color != null">
+                        <div [ngStyle]="{'background-color':color.secundario}" style="height: 50px;">
 
                         </div>
+                        <input type="color" class="form-control p-1" value="{{color.secundario  }}" [(ngModel)]="color.secundario">
                     </div>
                     <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" (click)="updateColors()" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
                     </div>
                     <div class="w-100">
                         <hr>
@@ -46,10 +48,10 @@
                         <label class="ml-2">Imagen {{index+1}}</label>
                     </div>
                     <div class="col-lg-4 row" style="align-items: center; justify-content: center;">
-                        <input type="file" class="form-control">
+                        <input type="file" (change)="fileChange($event, image.image)" class="form-control">
                     </div>
                     <div class="col-lg-3 row" style="align-items: center; justify-content: center;">
-                        <button type="button" data-toggle="modal" data-target="#modalEdit" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" (click)="updateImg()" class="btn btn-primary mr-1"><i class="fa fa-edit"></i></button>
                     </div>
                     <div class="w-100">
                         <hr>

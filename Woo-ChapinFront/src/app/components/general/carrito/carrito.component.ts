@@ -26,6 +26,7 @@ export class CarritoComponent implements OnInit {
   public municipioSelected:Municipio;
   public municipios: Municipio[];
   public isChecked;
+  public isChecked2;
   public valor;
   public direcciones:[];
 
@@ -86,6 +87,22 @@ export class CarritoComponent implements OnInit {
     }
   }
 
+  agregarDireccion(){  
+    if(this.isChecked2){
+      this.restUser.agregarDireccion(this.envio.specificAddress, this.user._id).subscribe((res:any)=>{
+        if(res.pushAddress){
+          this.notifier.notify("success", res.message);
+          localStorage.setItem("user", JSON.stringify(res.pushAddress))
+          this.user = res.pushAddress;
+          this.getDirecciones();
+        }else{
+          this.notifier.notify("error", res.message);
+          this.user;
+        }
+      }, error=> this.notifier.notify("error", "ocurrió un error en la consulta") );
+    }
+  }
+
   getMunicipio(){
     if(this.user != null){
       this.restMunicipio.getMunicipios().subscribe((res:any)=>{
@@ -103,8 +120,11 @@ export class CarritoComponent implements OnInit {
       this.restCart.getCarrito(this.user._id).subscribe((res:any)=>{
         if(res.carritoFind){
           this.carrito = res.carritoFind;
+          localStorage.setItem("carrito",JSON.stringify(res.carritoFind));
+
         }else{
           this.notifier.notify("error",res.message);
+          localStorage.setItem("carrito","");
           this.carrito = new Carrito('',[],null,'');
         }
       }, error=> this.notifier.notify("error", error.error.message))
@@ -165,7 +185,7 @@ export class CarritoComponent implements OnInit {
       if(res.facturaFind  ){
         this.crearEnvio(res.facturaFind._id, form);
         console.log(res.message);
-
+        this.agregarDireccion();
       }else{
         this.getCarrito();
         this.notifier.notify("error", res.message);
@@ -177,9 +197,11 @@ export class CarritoComponent implements OnInit {
     this.restEnvio.createEnvio(this.envio,this.municipioSelected._id,this.user._id,facId).subscribe((res:any)=>{
       
       if(res.envioSaved){
+
         form.reset();
         this.notifier.notify("success", res.message);
         this.getCarrito();
+        
       }else{
         this.notifier.notify("error", res.message);
       }

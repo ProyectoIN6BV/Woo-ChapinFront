@@ -147,6 +147,7 @@
                             <label for="email">Dirección de correo electrónico:</label>
                             <input type="email" #address="ngModel" name="address" id="address" [(ngModel)]="envio.address" name="email">
                         </div>
+                        
                         <div class="field padding-bottom--24">
                           <div class="grid--50-50">
                             <label for="address">Dirección Específica (Número de casa, calle)</label>
@@ -165,6 +166,10 @@
                               </div>
                             </div>
                           </div>
+                        </div>
+                        <div class="d-flex" style="align-items: center;">
+                          <input type="checkbox" [(ngModel)]="isChecked2"  name="check2" id="check2">
+                          <label for="check2" class="m-0 pl-1" >guardar dirección</label>
                         </div>
                         <div class="field padding-bottom--24">
                             <div class="grid--50-50">
